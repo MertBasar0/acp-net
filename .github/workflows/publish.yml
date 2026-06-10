@@ -10,11 +10,13 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
     name: Publish alpha packages
     runs-on: ubuntu-latest
+    environment: production
     if: ${{ github.event.inputs.confirm_publish == 'publish' }}
 
     steps:
@@ -50,24 +52,27 @@ jobs:
       - name: Verify doctor adapter draft
         run: node src/openclaw-probe/verify-doctor-adapter-draft.mjs
 
+      # Trusted Publishing: exchanges the GitHub Actions OIDC token for a
+      # short-lived NuGet API key. Requires a matching trusted publishing
+      # policy on nuget.org (repository, workflow file, and environment).
+      - name: NuGet login (Trusted Publishing)
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: Mertbasar0
+
       - name: Push packages
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
           set -euo pipefail
-          test -n "${NUGET_API_KEY}"
           dotnet nuget push "artifacts/packages/*.nupkg" \
-            --api-key "${NUGET_API_KEY}" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
             --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate
 
       - name: Push symbol packages
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
           set -euo pipefail
-          test -n "${NUGET_API_KEY}"
           dotnet nuget push "artifacts/packages/*.snupkg" \
-            --api-key "${NUGET_API_KEY}" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
             --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate

@@ -10,15 +10,14 @@ Herhangi bir alpha NuGet yayınından önce bunu kullanın. Güncel proje durumu
 
 Proje sahibinden açık bir yayın kararı olmadan NuGet'e yayın yapma.
 
-Depo yerel alpha paketleri üretebiliyor ve Apache-2.0 seçildi. Herkese açık NuGet yayını için hâlâ son bir paket ID uygunluk onayı, bir NuGet API anahtarı ve son sürüm commit'i üzerinde paket metadata yeniden kontrolü gerekiyor.
+Depo yerel alpha paketleri üretebiliyor ve Apache-2.0 seçildi. Herkese açık NuGet yayını için hâlâ son bir paket ID uygunluk onayı, etkin bir nuget.org trusted publishing politikası ve son sürüm commit'i üzerinde paket metadata yeniden kontrolü gerekiyor.
 
 ## Alpha Öncesi Gerekenler
 
 - Public API isimleri gözden geçirildi.
 - Paket açıklamaları gözden geçirildi.
 - Lisans proje sahibi tarafından seçildi.
-- Yayın workflow'u için NuGet API anahtarı oluşturuldu.
-- GitHub depo secret'ı `NUGET_API_KEY` yapılandırıldı.
+- Bu depo için nuget.org trusted publishing politikası yapılandırıldı (`publish.yml`, `production` environment'ı).
 - Yayından hemen önce paket ID uygunluğu kontrol edildi.
 - README örnekleri taze bir klondan test edildi.
 - `dotnet test` geçiyor.
@@ -76,7 +75,7 @@ Yayın workflow dosyası:
 .github/workflows/publish.yml
 ```
 
-Workflow elle tetiklenir ve `confirm_publish=publish` gerektirir. `NUGET_API_KEY` depo secret'ını kullanır.
+Workflow elle tetiklenir ve `confirm_publish=publish` gerektirir. Kimlik doğrulamasını nuget.org trusted publishing üzerinden yapar (`NuGet/login` ile GitHub Actions OIDC); depoda API anahtarı secret'ı saklanmaz. nuget.org'daki eşleşen politika bu depoyu, `publish.yml` workflow'unu ve `production` environment'ını referans göstermelidir.
 
 ## Önerilen Yayın Sırası
 

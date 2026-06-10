@@ -91,7 +91,7 @@ Local package generation works for:
 No package has been published. Package metadata carries the correct repository/project URL and the Apache-2.0 license expression. Publication still requires:
 
 - an explicit publish decision from the project owner,
-- a NuGet API key and the `NUGET_API_KEY` repository secret,
+- an active nuget.org trusted publishing policy for this repository,
 - a final package ID availability check immediately before push.
 
 See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the full gate list.

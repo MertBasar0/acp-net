@@ -10,15 +10,14 @@ Use this before any alpha NuGet publication. For current project state see [CURR
 
 Do not publish to NuGet without an explicit publish decision from the project owner.
 
-The repository can produce local alpha packages and Apache-2.0 is selected. Public NuGet publication still needs final package ID availability confirmation, a NuGet API key, and a package metadata recheck on the final release commit.
+The repository can produce local alpha packages and Apache-2.0 is selected. Public NuGet publication still needs final package ID availability confirmation, an active nuget.org trusted publishing policy, and a package metadata recheck on the final release commit.
 
 ## Required Before Alpha
 
 - Public API names reviewed.
 - Package descriptions reviewed.
 - License selected by project owner.
-- NuGet API key created for the publish workflow.
-- GitHub repository secret `NUGET_API_KEY` configured.
+- nuget.org trusted publishing policy configured for this repository (`publish.yml`, environment `production`).
 - Package ID availability checked immediately before publish.
 - README examples tested from a fresh clone.
 - `dotnet test` passes.
@@ -76,7 +75,7 @@ Publishing workflow file:
 .github/workflows/publish.yml
 ```
 
-The workflow is manually triggered and requires `confirm_publish=publish`. It uses the `NUGET_API_KEY` repository secret.
+The workflow is manually triggered and requires `confirm_publish=publish`. It authenticates through nuget.org trusted publishing (GitHub Actions OIDC via `NuGet/login`); no API key secret is stored in the repository. The matching policy on nuget.org must reference this repository, the `publish.yml` workflow, and the `production` environment.
 
 ## Recommended Publish Order
 

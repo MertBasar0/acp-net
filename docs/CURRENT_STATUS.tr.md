@@ -91,7 +91,7 @@ Yerel paket üretimi şunlar için çalışıyor:
 Hiçbir paket yayınlanmadı. Paket metadata'sı doğru depo/proje URL'sini ve Apache-2.0 lisans ifadesini taşıyor. Yayın için hâlâ gerekenler:
 
 - proje sahibinden açık bir yayın kararı,
-- bir NuGet API anahtarı ve `NUGET_API_KEY` depo secret'ı,
+- bu depo için etkin bir nuget.org trusted publishing (güvenilir yayıncı) politikası,
 - push'tan hemen önce son bir paket ID uygunluk kontrolü.
 
 Tam kapı listesi için [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md) dosyasına bakın.
