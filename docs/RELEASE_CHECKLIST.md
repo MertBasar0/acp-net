@@ -4,6 +4,12 @@ Last updated: 2026-06-10
 
 Use this before any alpha NuGet publication.
 
+## Current Publication Decision
+
+Do not publish to NuGet yet.
+
+The current repository can produce local alpha packages, but public NuGet publication is blocked until the project owner selects a license and the generated package metadata is rechecked after the final release commit.
+
 ## Required Before Alpha
 
 - Public API names reviewed.
@@ -14,7 +20,8 @@ Use this before any alpha NuGet publication.
 - `dotnet pack` passes for `Acp.Net.Process`.
 - `dotnet pack` passes for `Acp.Net.Testing`.
 - Generated packages inspected locally.
-- CI added or intentionally deferred with a written reason.
+- CI passes.
+- Repository visibility intentionally set for the release phase.
 
 ## Verification Commands
 
@@ -32,3 +39,12 @@ node src/openclaw-probe/verify-doctor-adapter-draft.mjs
 - The package identity is still unclear against `AgentClientProtocol`.
 - License is undecided.
 - The package contains generated artifacts or local transcripts.
+- Diagnostics is packaged before the command contract is stable.
+
+## Current Metadata State
+
+- `RepositoryUrl`: `https://github.com/MertBasar0/acp-net`
+- `PackageProjectUrl`: `https://github.com/MertBasar0/acp-net`
+- `RepositoryType`: `git`
+- `PackageLicenseExpression`: intentionally not set yet
+- Published packages: none

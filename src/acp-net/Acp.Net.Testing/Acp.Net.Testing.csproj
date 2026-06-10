@@ -8,8 +8,11 @@
     <Authors>Mert Basar</Authors>
     <Description>Fake ACP agent and transcript assertions for .NET ACP integration tests.</Description>
     <PackageTags>ACP;AgentClientProtocol;testing;fake-agent;transcript</PackageTags>
-    <RepositoryUrl>https://github.com/openclaw/openclaw</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/MertBasar0/acp-net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MertBasar0/acp-net</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Initial alpha package for deterministic fake ACP agents and transcript assertions.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -29,7 +29,8 @@ Acp.Net will be developed as an independent .NET package family:
 
 - `Acp.Net.Process`
 - `Acp.Net.Testing`
-- possible future `Acp.Net.Diagnostics`
+
+Diagnostics remains repository tooling for now. A possible future `Acp.Net.Diagnostics` package is covered separately by ADR-0003.
 
 OpenClaw will be treated as a reference consumer and dogfood environment, not as the main product boundary.
 
@@ -47,7 +48,7 @@ Negative:
 
 - OpenClaw integration remains a later step.
 - Some duplication in sample/adapter code may exist until integration points are formalized.
-- Diagnostics command packaging remains undecided.
+- Diagnostics command packaging is intentionally deferred.
 
 ## Follow-Up
 

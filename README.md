@@ -12,7 +12,7 @@ Current implemented surfaces:
 
 - `Acp.Net.Process`: process runner, WSL/native runtime bridge, path mapping, environment shaping, preflight checks, transcript recording, run artifacts, shutdown policy.
 - `Acp.Net.Testing`: deterministic fake ACP agent scripts and transcript assertions for integration tests.
-- Diagnostic samples/tools: OpenClaw-oriented probe command and doctor/lint mapping draft.
+- Diagnostic samples/tools: OpenClaw-oriented probe command and doctor/lint mapping draft. These are intentionally not a separate NuGet package yet.
 
 The core value is separating these failure classes:
 
@@ -99,7 +99,7 @@ Read these first when resuming work:
 The next recommended work is not an OpenClaw core PR. The next work should harden Acp.Net as an independent package family:
 
 1. stabilize package API boundaries,
-2. move diagnostics from sample into a clear tools/CLI surface,
+2. keep diagnostics as repository tooling until the command contract has more usage evidence,
 3. improve docs and examples,
 4. prepare first alpha NuGet packages,
 5. keep OpenClaw integration as reference/dogfood material.

@@ -8,7 +8,8 @@ Ship Acp.Net as an independent .NET package family:
 
 - `Acp.Net.Process`
 - `Acp.Net.Testing`
-- optional future `Acp.Net.Diagnostics`
+
+Diagnostics remains repository tooling for now. A future `Acp.Net.Diagnostics` package is possible, but it is not part of the first alpha package round.
 
 OpenClaw should remain a reference integration, not the default implementation target.
 
@@ -33,7 +34,7 @@ Goals:
 - add package README coverage
 - add XML docs or minimal API docs
 - ensure `dotnet test` and `dotnet pack` are one-command reproducible
-- add CI workflow later
+- add CI workflow
 - decide license
 
 Candidate output:
@@ -45,7 +46,7 @@ Candidate output:
 
 Goals:
 
-- decide whether diagnostics remains sample/tool or becomes `Acp.Net.Diagnostics`
+- keep diagnostics as sample/tooling for now
 - stabilize `openclaw-acpnet-probe` CLI contract
 - keep stdout as one JSON result
 - keep stderr diagnostic-only
@@ -53,6 +54,8 @@ Goals:
 - document doctor/lint mapping
 
 Do not add OpenClaw core code in this phase.
+
+Do not create `Acp.Net.Diagnostics` in this phase.
 
 ## Phase 3: Reference Integrations
 

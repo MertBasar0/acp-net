@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-pack:
+    name: Test and pack
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            8.0.x
+
+      - name: Verify Python
+        run: python3 --version
+
+      - name: Test
+        run: dotnet test src/acp-net/AcpNetMvp.slnx --logger "console;verbosity=minimal"
+
+      - name: Pack Acp.Net.Process
+        run: dotnet pack src/acp-net/Acp.Net.Process/Acp.Net.Process.csproj --configuration Release --output artifacts/packages
+
+      - name: Pack Acp.Net.Testing
+        run: dotnet pack src/acp-net/Acp.Net.Testing/Acp.Net.Testing.csproj --configuration Release --output artifacts/packages
+
+      - name: Verify doctor adapter draft
+        run: node src/openclaw-probe/verify-doctor-adapter-draft.mjs

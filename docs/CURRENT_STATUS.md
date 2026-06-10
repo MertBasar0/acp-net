@@ -102,7 +102,7 @@ Acp.Net.Testing: ok
 ## Current Risks
 
 - API is still alpha-level.
-- Diagnostics CLI is still a sample/tool, not a packaged product.
+- Diagnostics CLI is intentionally still a sample/tool, not a packaged product.
 - Some historical docs contain old absolute paths from the previous OpenClaw workspace location.
 - Node child process to Windows interop failed in the Codex sandbox with `UtilBindVsockAnyPort`; this must not be ignored for OpenClaw integration.
 - No NuGet publication has happened yet.

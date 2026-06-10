@@ -23,7 +23,7 @@ It should not become an OpenClaw fork and should not start with OpenClaw core PR
 
 - `Acp.Net.Process`: process runner, runtime resolution, Windows/WSL path mapping, env shaping, preflight checks, transcript recording, run artifacts, shutdown policy.
 - `Acp.Net.Testing`: deterministic fake ACP agents and transcript assertions.
-- OpenClaw-oriented probes: sample diagnostics and doctor adapter draft.
+- OpenClaw-oriented probes: sample diagnostics and doctor adapter draft. Diagnostics is not a separate NuGet package yet.
 - Spike history: `docs/spikes/`.
 - Decisions: `docs/decisions/`.
 
@@ -54,11 +54,20 @@ dotnet pack '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\Acp.Net.Testi
 ## Next Best Work
 
 1. Review public API names in `Acp.Net.Process`.
-2. Decide package versioning and license.
+2. Decide license.
 3. Add minimal API docs/XML comments for public types.
-4. Convert the OpenClaw diagnostic sample into a clearer `tools` or future `Acp.Net.Diagnostics` surface.
-5. Add CI after the repository is pushed.
-6. Prepare alpha packages but do not publish before API review.
+4. Keep diagnostics as repository tooling while the contract settles.
+5. Inspect generated alpha packages locally.
+6. Prepare alpha packages but do not publish before API and license review.
+
+## NuGet State
+
+Local package generation works for:
+
+- `Acp.Net.Process.0.1.0-alpha.1`
+- `Acp.Net.Testing.0.1.0-alpha.1`
+
+Do not publish yet. The package metadata has the correct repository/project URL, but license metadata is intentionally unset until the project owner chooses a license.
 
 ## Decisions To Avoid Reopening Too Early
 
