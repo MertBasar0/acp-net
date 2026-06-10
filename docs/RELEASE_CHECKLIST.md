@@ -19,6 +19,8 @@ The current repository can produce local alpha packages, and Apache-2.0 is selec
 - Public API names reviewed.
 - Package descriptions reviewed.
 - License selected by project owner.
+- NuGet API key created for workflow file `publish.yml`.
+- GitHub repository secret `NUGET_API_KEY` configured.
 - Package ID availability checked immediately before publish.
 - README examples tested from a fresh clone.
 - `dotnet test` passes.
@@ -63,3 +65,19 @@ Checked on 2026-06-10 through NuGet flat-container API:
 - `https://api.nuget.org/v3-flatcontainer/acp.net.testing/index.json`: 404
 
 Interpretation: these package IDs were not published at check time. Recheck immediately before `dotnet nuget push`.
+
+## GitHub Actions Publishing
+
+Publishing workflow file:
+
+```text
+publish.yml
+```
+
+Full repository path:
+
+```text
+.github/workflows/publish.yml
+```
+
+The workflow is manually triggered and requires `confirm_publish=publish`. It uses the `NUGET_API_KEY` repository secret.

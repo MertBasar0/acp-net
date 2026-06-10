@@ -115,6 +115,7 @@ Remaining operational blockers:
 
 - explicit owner approval to publish
 - NuGet API key
+- GitHub repository secret `NUGET_API_KEY`
 - final package ID availability check immediately before push
 - decision to make GitHub repo public immediately after NuGet publish
 
@@ -126,3 +127,9 @@ Remaining operational blockers:
 4. Push `.snupkg` symbol packages.
 5. Confirm NuGet package pages show Apache-2.0, README, repository URL, and prerelease version.
 6. Make GitHub repo public.
+
+GitHub Actions publishing workflow file:
+
+```text
+publish.yml
+```

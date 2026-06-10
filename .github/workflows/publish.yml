@@ -1,0 +1,73 @@
+name: Publish NuGet Alpha
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_publish:
+        description: Type publish to push packages to NuGet.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish alpha packages
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.confirm_publish == 'publish' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            8.0.x
+
+      - name: Verify package IDs are still unpublished
+        run: |
+          set -euo pipefail
+          for id in acp.net.process acp.net.testing; do
+            status=$(curl -sS -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/${id}/index.json")
+            if [ "$status" != "404" ]; then
+              echo "Package ID ${id} returned HTTP ${status}; refusing to publish."
+              exit 1
+            fi
+          done
+
+      - name: Test
+        run: dotnet test src/acp-net/AcpNetMvp.slnx --logger "console;verbosity=minimal"
+
+      - name: Pack
+        run: |
+          dotnet pack src/acp-net/Acp.Net.Process/Acp.Net.Process.csproj --configuration Release --output artifacts/packages
+          dotnet pack src/acp-net/Acp.Net.Testing/Acp.Net.Testing.csproj --configuration Release --output artifacts/packages
+
+      - name: Verify doctor adapter draft
+        run: node src/openclaw-probe/verify-doctor-adapter-draft.mjs
+
+      - name: Push packages
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "${NUGET_API_KEY}"
+          dotnet nuget push "artifacts/packages/*.nupkg" \
+            --api-key "${NUGET_API_KEY}" \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate
+
+      - name: Push symbol packages
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "${NUGET_API_KEY}"
+          dotnet nuget push "artifacts/packages/*.snupkg" \
+            --api-key "${NUGET_API_KEY}" \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate
