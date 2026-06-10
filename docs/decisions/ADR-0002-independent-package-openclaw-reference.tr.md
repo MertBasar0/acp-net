@@ -10,7 +10,7 @@ Kabul edildi.
 
 ## Bağlam
 
-Spike 011–014 sürecinde Acp.Net, OpenClaw entegrasyon ihtiyaçlarına karşı değerlendirildi. (Spike oturum raporları, deponun dışında bakımcının yerel mühendislik notları olarak tutulmaktadır.)
+Spike 011–014 sürecinde Acp.Net, OpenClaw entegrasyon ihtiyaçlarına karşı değerlendirildi. Spike oturum raporları, depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulmaktadır; bu klasör uzak depoya gönderilmez.
 
 OpenClaw'da `extensions/acpx` altında zaten ACPX runtime desteği var. Bu runtime; session/turn semantiğine, process lease durumuna ve temizlik davranışına sahiptir. Acp.Net'i doğrudan OpenClaw core'a eklemek, ACPX sorumluluklarını tekrarlama riski taşır ve zor bir bakımcı incelemesi gerektirirdi.
 

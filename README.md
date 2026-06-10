@@ -49,7 +49,7 @@ Acp.Net complements the existing `AgentClientProtocol` package.
 - `docs/product/`: product design notes.
 - `docs/contracts/`: JSON/result contracts and adapter mapping fixtures.
 
-Dated spike reports and day-to-day handoff notes are maintained outside this repository as the maintainer's local engineering notes. The durable outcomes of that work are recorded in `docs/decisions/`.
+Dated spike reports and day-to-day handoff notes live in the untracked `notes/` folder at the repository root, which is ignored by git and never pushed to the remote. The durable outcomes of that work are recorded in `docs/decisions/`.
 
 ## Quick Verification
 

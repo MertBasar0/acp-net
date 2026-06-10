@@ -2,3 +2,7 @@
 **/obj/
 **/artifacts/
 *.ndjson
+
+# Maintainer-local engineering notes (handoffs, spike session reports).
+# Kept next to the code for convenience but never pushed to the remote.
+/notes/

@@ -115,4 +115,4 @@ Tam kapı listesi için [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md) dosya
 
 ## Mühendislik Notları Arşivi
 
-Tarihli spike raporları (001–014) ve günlük handoff notları 2026-06-10 tarihinde bu depodan çıkarıldı. Bu depodan ve GitHub uzak deposundan bağımsız olarak, bakımcının yerel mühendislik notları içinde tutuluyorlar. Bu çalışmalardan damıtılan kalıcı kararlar [decisions/](decisions/) altında yaşıyor.
+Tarihli spike raporları (001–014) ve günlük handoff notları 2026-06-10 tarihinde git geçmişinden çıkarıldı. Depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe (`notes/handoffs/`, `notes/spikes/`) yaşıyorlar; bu klasör GitHub uzak deposuna gönderilmez. Bu çalışmalardan damıtılan kalıcı kararlar [decisions/](decisions/) altında yaşıyor.

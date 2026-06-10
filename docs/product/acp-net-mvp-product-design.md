@@ -174,7 +174,7 @@ Where Acp.Net must be good:
 
 ## Design Notes Log
 
-The notes below record how the design evolved during implementation. The detailed spike session reports behind them are maintained as the maintainer's local engineering notes outside this repository.
+The notes below record how the design evolved during implementation. The detailed spike session reports behind them are kept in the untracked `notes/` folder at the repository root (ignored by git, not pushed to the remote).
 
 ### 2026-06-07 API Hardening Note
 

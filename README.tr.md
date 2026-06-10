@@ -49,7 +49,7 @@ Acp.Net, mevcut `AgentClientProtocol` paketini tamamlar.
 - `docs/product/`: ürün tasarım notları.
 - `docs/contracts/`: JSON/sonuç kontratları ve adapter eşleme fixture'ları.
 
-Tarihli spike raporları ve günlük handoff notları, bu deponun dışında, bakımcının yerel mühendislik notları olarak tutulmaktadır. Bu çalışmaların kalıcı sonuçları `docs/decisions/` altında kayıtlıdır.
+Tarihli spike raporları ve günlük handoff notları, depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulmaktadır (uzak depoya gönderilmez). Bu çalışmaların kalıcı sonuçları `docs/decisions/` altında kayıtlıdır.
 
 ## Hızlı Doğrulama
 

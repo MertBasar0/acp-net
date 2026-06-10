@@ -25,7 +25,7 @@ Hedefler:
 - git'i başlatmak
 - bağımsız GitHub deposuna push'lamak
 - güncel durumu ve sonraki adımları dokümante etmek
-- spike geçmişini korumak (artık deponun dışında yerel mühendislik notları olarak tutuluyor; kalıcı sonuçlar `docs/decisions/` altında)
+- spike geçmişini korumak (artık depo kökündeki git tarafından takip edilmeyen `notes/` klasöründe tutuluyor; kalıcı sonuçlar `docs/decisions/` altında)
 
 ## Faz 1: Alpha Paket Sağlamlaştırma
 

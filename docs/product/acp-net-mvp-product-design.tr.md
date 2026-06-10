@@ -174,7 +174,7 @@ Acp.Net'in iyi olması gereken alan:
 
 ## Tasarım Notları Günlüğü
 
-Aşağıdaki notlar, tasarımın geliştirme sırasında nasıl evrildiğini kaydeder. Bunların arkasındaki ayrıntılı spike oturum raporları, deponun dışında bakımcının yerel mühendislik notları olarak tutulmaktadır.
+Aşağıdaki notlar, tasarımın geliştirme sırasında nasıl evrildiğini kaydeder. Bunların arkasındaki ayrıntılı spike oturum raporları, depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulmaktadır (uzak depoya gönderilmez).
 
 ### 2026-06-07 API Sağlamlaştırma Notu
 

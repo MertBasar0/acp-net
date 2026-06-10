@@ -69,7 +69,7 @@ Do not commit local transcripts, package outputs, or generated run artifacts unl
 - English is the primary documentation language.
 - Every core document has a full Turkish version next to it with a `.tr.md` suffix; keep both in sync when editing.
 - Do not put machine-specific absolute paths into documentation; use repository-relative paths and placeholders like `<Distro>`.
-- Dated working notes (spike session reports, daily handoffs) do not belong in this repository; they are maintained as the maintainer's local engineering notes. Record durable outcomes as ADRs under `docs/decisions/`.
+- Dated working notes (spike session reports, daily handoffs) do not belong in the git history; they live in the untracked `notes/` folder at the repository root. Record durable outcomes as ADRs under `docs/decisions/`.
 - `docs/CURRENT_STATUS.md` is the single source of truth for project state; link to it instead of duplicating status or test counts.
 
 ## Coding Principles

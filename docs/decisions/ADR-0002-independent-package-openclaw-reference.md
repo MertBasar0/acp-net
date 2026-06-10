@@ -10,7 +10,7 @@ Accepted.
 
 ## Context
 
-During spikes 011–014, Acp.Net was evaluated against OpenClaw integration needs. (The spike session reports are maintained as the maintainer's local engineering notes outside this repository.)
+During spikes 011–014, Acp.Net was evaluated against OpenClaw integration needs. The spike session reports are kept in the untracked `notes/` folder at the repository root; it is ignored by git and not pushed to the remote.
 
 OpenClaw already has ACPX runtime support in `extensions/acpx`. That runtime owns session/turn semantics, process lease state, and cleanup behavior. Adding Acp.Net directly into OpenClaw core would risk duplicating ACPX responsibilities and would require a difficult maintainer review.
 

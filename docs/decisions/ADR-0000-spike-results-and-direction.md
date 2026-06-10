@@ -42,4 +42,4 @@ The next critical decision gate is the AgentClientProtocol incumbent comparison.
 
 ## Evidence
 
-The spike session reports behind this ADR (spikes 001–003) are maintained as the maintainer's local engineering notes outside this repository.
+The spike session reports behind this ADR (spikes 001–003) are kept in the untracked `notes/` folder at the repository root (ignored by git, not pushed to the remote).

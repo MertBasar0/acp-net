@@ -25,7 +25,7 @@ Goals:
 - initialize git
 - push to standalone GitHub repo
 - document current status and next steps
-- preserve spike history (now maintained as local engineering notes outside the repository; durable outcomes live in `docs/decisions/`)
+- preserve spike history (now kept in the untracked `notes/` folder at the repository root; durable outcomes live in `docs/decisions/`)
 
 ## Phase 1: Alpha Package Hardening
 

@@ -74,4 +74,4 @@ Bu depoda:
 - `docs/contracts/openclaw-doctor-adapter-draft.md` — eşleme kontratı
 - `docs/contracts/openclaw-doctor-mapping.scenarios.json` — senaryo fixture'ları
 
-Bu artifact'leri üreten tarihli spike raporları (011–014), deponun dışında bakımcının yerel mühendislik notları olarak tutulmaktadır. Kalıcı sonuçları [decisions/ADR-0002](decisions/ADR-0002-independent-package-openclaw-reference.md) ve [decisions/ADR-0003](decisions/ADR-0003-diagnostics-remains-tooling.md) altında kayıtlıdır.
+Bu artifact'leri üreten tarihli spike raporları (011–014), depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulmaktadır (uzak depoya gönderilmez). Kalıcı sonuçları [decisions/ADR-0002](decisions/ADR-0002-independent-package-openclaw-reference.md) ve [decisions/ADR-0003](decisions/ADR-0003-diagnostics-remains-tooling.md) altında kayıtlıdır.

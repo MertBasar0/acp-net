@@ -74,4 +74,4 @@ In this repository:
 - `docs/contracts/openclaw-doctor-adapter-draft.md` — mapping contract
 - `docs/contracts/openclaw-doctor-mapping.scenarios.json` — scenario fixtures
 
-The dated spike reports (011–014) that produced these artifacts are maintained as the maintainer's local engineering notes outside this repository. Their durable conclusions are recorded in [decisions/ADR-0002](decisions/ADR-0002-independent-package-openclaw-reference.md) and [decisions/ADR-0003](decisions/ADR-0003-diagnostics-remains-tooling.md).
+The dated spike reports (011–014) that produced these artifacts are kept in the untracked `notes/` folder at the repository root (ignored by git, not pushed to the remote). Their durable conclusions are recorded in [decisions/ADR-0002](decisions/ADR-0002-independent-package-openclaw-reference.md) and [decisions/ADR-0003](decisions/ADR-0003-diagnostics-remains-tooling.md).

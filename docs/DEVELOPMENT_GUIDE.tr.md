@@ -69,7 +69,7 @@ Belirli bir fixture bilinçli olarak `docs/contracts` altına konmadıkça; yere
 - Dokümantasyonun ana dili İngilizcedir.
 - Her çekirdek dokümanın yanında `.tr.md` son ekiyle tam bir Türkçe sürümü bulunur; düzenlerken ikisini senkron tutun.
 - Dokümantasyona makineye özel mutlak yollar koymayın; depo-göreli yollar ve `<Dağıtım>` gibi yer tutucular kullanın.
-- Tarihli çalışma notları (spike oturum raporları, günlük handoff'lar) bu depoya ait değildir; bakımcının yerel mühendislik notları olarak tutulurlar. Kalıcı sonuçları `docs/decisions/` altında ADR olarak kaydedin.
+- Tarihli çalışma notları (spike oturum raporları, günlük handoff'lar) git geçmişine ait değildir; depo kökündeki git tarafından takip edilmeyen `notes/` klasöründe tutulurlar. Kalıcı sonuçları `docs/decisions/` altında ADR olarak kaydedin.
 - `docs/CURRENT_STATUS.md`, proje durumu için tek doğruluk kaynağıdır; durum veya test sayısı kopyalamak yerine ona bağlantı verin.
 
 ## Kodlama İlkeleri

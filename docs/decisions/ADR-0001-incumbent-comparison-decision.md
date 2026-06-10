@@ -69,4 +69,4 @@ Training Factory stays outside this decision. For now it is kept as post-Acp.Net
 
 ## Evidence
 
-The comparison score table and run transcripts are recorded in the spike session reports (spike 001), maintained as the maintainer's local engineering notes outside this repository. The executable comparison code remains in `src/spikes/acp-incumbent-comparison/`.
+The comparison score table and run transcripts are recorded in the spike session reports (spike 001), kept in the untracked `notes/` folder at the repository root (ignored by git, not pushed to the remote). The executable comparison code remains in `src/spikes/acp-incumbent-comparison/`.

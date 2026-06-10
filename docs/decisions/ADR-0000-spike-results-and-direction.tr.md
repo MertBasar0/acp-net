@@ -42,4 +42,4 @@ Bir sonraki kritik karar kapısı AgentClientProtocol incumbent karşılaştırm
 
 ## Kanıt
 
-Bu ADR'nin arkasındaki spike oturum raporları (spike 001–003), deponun dışında bakımcının yerel mühendislik notları olarak tutulmaktadır.
+Bu ADR'nin arkasındaki spike oturum raporları (spike 001–003), depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulmaktadır (uzak depoya gönderilmez).

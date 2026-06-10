@@ -69,4 +69,4 @@ Training Factory bu kararın dışında kalır. Şimdilik Acp.Net sonrası dogfo
 
 ## Kanıt
 
-Karşılaştırma skor tablosu ve çalıştırma transcript'leri, deponun dışında bakımcının yerel mühendislik notları olarak tutulan spike oturum raporlarında (spike 001) kayıtlıdır. Çalıştırılabilir karşılaştırma kodu `src/spikes/acp-incumbent-comparison/` altında durmaktadır.
+Karşılaştırma skor tablosu ve çalıştırma transcript'leri, depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulan spike oturum raporlarında (spike 001) kayıtlıdır. Çalıştırılabilir karşılaştırma kodu `src/spikes/acp-incumbent-comparison/` altında durmaktadır.

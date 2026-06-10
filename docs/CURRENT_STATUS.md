@@ -115,4 +115,4 @@ See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the full gate list.
 
 ## Engineering Notes Archive
 
-Dated spike reports (001–014) and daily handoff notes were moved out of this repository on 2026-06-10. They are maintained as the maintainer's local engineering notes, independent of this repository and its GitHub remote. The durable decisions distilled from them live in [decisions/](decisions/).
+Dated spike reports (001–014) and daily handoff notes were moved out of the git history on 2026-06-10. They live in the untracked `notes/` folder at the repository root (`notes/handoffs/`, `notes/spikes/`); the folder is ignored by git and never pushed to the GitHub remote. The durable decisions distilled from them live in [decisions/](decisions/).
