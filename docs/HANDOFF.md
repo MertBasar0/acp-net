@@ -12,6 +12,7 @@ This repository is the standalone Acp.Net workspace. It was moved out of the Ope
 4. `docs/DEVELOPMENT_GUIDE.md`
 5. `docs/OPENCLAW_INTEGRATION_STRATEGY.md`
 6. `docs/decisions/ADR-0002-independent-package-openclaw-reference.md`
+7. `docs/plans/2026-06-10-nuget-prepublish-check.md`
 
 ## Current Product Thesis
 
@@ -68,6 +69,8 @@ Local package generation works for:
 - `Acp.Net.Testing.0.1.0-alpha.1`
 
 Do not publish yet. The package metadata has the correct repository/project URL and Apache-2.0 license expression. Publishing still needs final package ID availability confirmation, a NuGet API key, and an explicit publish decision.
+
+Latest prepublish check is documented in `docs/plans/2026-06-10-nuget-prepublish-check.md`.
 
 ## Decisions To Avoid Reopening Too Early
 

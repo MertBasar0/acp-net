@@ -4,6 +4,10 @@ Last updated: 2026-06-10
 
 Use this before any alpha NuGet publication.
 
+Latest prepublish check result:
+
+- `docs/plans/2026-06-10-nuget-prepublish-check.md`
+
 ## Current Publication Decision
 
 Do not publish to NuGet yet without an explicit publish command from the project owner.
