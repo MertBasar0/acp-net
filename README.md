@@ -1,5 +1,7 @@
 # Acp.Net
 
+> 🇹🇷 Bu dokümanın Türkçe sürümü: [README.tr.md](README.tr.md)
+
 Acp.Net is a .NET product family for running, testing, and diagnosing ACP-compatible agent processes.
 
 It is **not** a full ACP protocol SDK and it is not an OpenClaw core fork. The current product direction is:
@@ -45,32 +47,29 @@ Acp.Net complements the existing `AgentClientProtocol` package.
 - `src/openclaw-probe/`: OpenClaw-oriented diagnostic/doctor adapter drafts.
 - `docs/decisions/`: ADRs and product decisions.
 - `docs/product/`: product design notes.
-- `docs/spikes/`: spike plans and results.
-- `docs/plans/`: handoff and next-action notes.
 - `docs/contracts/`: JSON/result contracts and adapter mapping fixtures.
+
+Dated spike reports and day-to-day handoff notes are maintained outside this repository as the maintainer's local engineering notes. The durable outcomes of that work are recorded in `docs/decisions/`.
 
 ## Quick Verification
 
-From this repository root:
+From the repository root:
 
 ```bash
-dotnet test '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\AcpNetMvp.slnx' --logger 'console;verbosity=minimal'
+dotnet test src/acp-net/AcpNetMvp.slnx --logger "console;verbosity=minimal"
 ```
 
-Expected latest result:
+All unit and integration tests should pass.
 
-```text
-Acp.Net.UnitTests: 14 passed
-Acp.Net.IntegrationTests: 3 passed
-```
-
-Run the diagnostic probe without model quota:
+Run the diagnostic probe without spending model quota (uses a deterministic fake ACP agent; requires `python3` in the agent runtime):
 
 ```bash
-dotnet run --project '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\samples\openclaw-acpnet-probe\openclaw-acpnet-probe.csproj'
+dotnet run --project src/samples/openclaw-acpnet-probe/openclaw-acpnet-probe.csproj
 ```
 
-Validate the OpenClaw doctor adapter draft:
+The probe prints a single JSON result to stdout and exits `0` on success.
+
+Validate the OpenClaw doctor adapter draft (requires Node.js):
 
 ```bash
 node src/openclaw-probe/verify-doctor-adapter-draft.mjs
@@ -82,17 +81,21 @@ Expected:
 doctor adapter scenarios ok (4)
 ```
 
-## Current Status
+> **Windows + WSL note:** if you run a Windows `dotnet.exe` against project files that live inside a WSL filesystem, pass them as UNC paths (`\\wsl.localhost\<Distro>\...`). See [docs/DEVELOPMENT_GUIDE.md](docs/DEVELOPMENT_GUIDE.md) for details.
+
+## Documentation
 
 Read these first when resuming work:
 
-- [Current Status](docs/CURRENT_STATUS.md)
-- [Handoff](docs/HANDOFF.md)
+- [Current Status](docs/CURRENT_STATUS.md) — single source of truth for project state
 - [Roadmap](docs/ROADMAP.md)
 - [Development Guide](docs/DEVELOPMENT_GUIDE.md)
 - [OpenClaw Integration Strategy](docs/OPENCLAW_INTEGRATION_STRATEGY.md)
 - [Release Checklist](docs/RELEASE_CHECKLIST.md)
 - [Product Design](docs/product/acp-net-mvp-product-design.md)
+- [Decisions (ADRs)](docs/decisions/)
+
+All core documents have full Turkish versions next to them with a `.tr.md` suffix.
 
 ## Near-Term Direction
 

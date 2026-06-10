@@ -1,8 +1,12 @@
-# OpenClaw Acp.Net Probe
+# OpenClaw Acp.Net Probe (Node Drafts)
 
-This is a small command-wrapper probe for Spike 011.
+🇹🇷 Türkçe sürüm: [README.tr.md](README.tr.md)
 
-It intentionally lives inside the Acp.Net workspace instead of modifying the OpenClaw core repository. The shape mirrors what an OpenClaw command/tool wrapper would need to do:
+This folder contains small Node-side drafts for OpenClaw integration. They intentionally live inside the Acp.Net repository instead of modifying the OpenClaw core repository.
+
+## Command Wrapper Probe
+
+`openclaw-acpnet-probe.mjs` mirrors what an OpenClaw command/tool wrapper would need to do:
 
 1. run the Acp.Net OpenClaw-style subagent sample,
 2. parse the sample stdout result,
@@ -33,3 +37,19 @@ Output contract:
 ```
 
 This probe uses the deterministic fake ACP agent. It does not use Gemini or Claude quota.
+
+## Doctor Adapter Draft
+
+`doctor-adapter-draft.mjs` maps the probe result to the OpenClaw doctor/lint surfaces described in [docs/contracts/openclaw-doctor-adapter-draft.md](../../docs/contracts/openclaw-doctor-adapter-draft.md).
+
+Verify it against the scenario fixtures:
+
+```bash
+node src/openclaw-probe/verify-doctor-adapter-draft.mjs
+```
+
+Expected:
+
+```text
+doctor adapter scenarios ok (4)
+```

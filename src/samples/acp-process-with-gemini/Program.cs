@@ -5,7 +5,8 @@ using AgentClientProtocol;
 var geminiPath = Environment.GetEnvironmentVariable("ACP_GEMINI_PATH");
 if (string.IsNullOrWhiteSpace(geminiPath))
 {
-    geminiPath = "/home/mertb/.nvm/versions/node/v22.22.2/bin/gemini";
+    // Resolve from the agent runtime PATH; set ACP_GEMINI_PATH for a specific install.
+    geminiPath = "gemini";
 }
 
 var promptText = args.Length > 0

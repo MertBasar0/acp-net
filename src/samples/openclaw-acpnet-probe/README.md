@@ -1,6 +1,8 @@
 # OpenClaw Acp.Net Probe Command
 
-This sample is the Spike 013 stabilized diagnostic command probe.
+🇹🇷 Türkçe sürüm: [README.tr.md](README.tr.md)
+
+This sample is the stabilized diagnostic command probe.
 
 It acts like a command that an OpenClaw plugin/tool wrapper could execute:
 

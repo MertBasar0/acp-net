@@ -13,8 +13,8 @@
   ],
   "agentName": "openclaw-fake-acp-subagent",
   "usesWsl": true,
-  "runArtifactPath": "\\\\wsl.localhost\\Ubuntu\\home\\mertb\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-run.json",
-  "transcriptPath": "\\\\wsl.localhost\\Ubuntu\\home\\mertb\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-transcript.ndjson",
+  "runArtifactPath": "\\\\wsl.localhost\\Ubuntu\\home\\user\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-run.json",
+  "transcriptPath": "\\\\wsl.localhost\\Ubuntu\\home\\user\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-transcript.ndjson",
   "preflight": {
     "total": 2,
     "criticalMissing": [],

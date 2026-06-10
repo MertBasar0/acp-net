@@ -1,6 +1,10 @@
 # Current Status
 
+> 🇹🇷 Türkçe sürüm: [CURRENT_STATUS.tr.md](CURRENT_STATUS.tr.md)
+
 Last updated: 2026-06-10
+
+This document is the single source of truth for project state. Other documents link here instead of repeating status information.
 
 ## Product Position
 
@@ -55,47 +59,49 @@ Samples/tools:
 - transcript recording
 - run artifact JSON
 - graceful shutdown then hard kill
+- cleanup of an already-started process when start is cancelled
 - deterministic fake ACP agent
 - hanging fake agent fixture
 - transcript assertions
-- OpenClaw-style diagnostic probe
+- OpenClaw-style diagnostic probe with automated exit-code contract tests
 - OpenClaw doctor/lint mapping draft
 
-## Latest Verification
+## Verification
 
-Last successful test command:
-
-```bash
-dotnet test '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\AcpNetMvp.slnx' --logger 'console;verbosity=minimal'
-```
-
-Expected:
-
-```text
-Acp.Net.UnitTests: 14 passed
-Acp.Net.IntegrationTests: 3 passed
-```
-
-Latest package checks:
+From the repository root:
 
 ```bash
-dotnet pack '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\Acp.Net.Process\Acp.Net.Process.csproj' --no-restore --output '\\wsl.localhost\Ubuntu\home\mertb\acp-net\artifacts\packages'
-dotnet pack '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\Acp.Net.Testing\Acp.Net.Testing.csproj' --no-restore --output '\\wsl.localhost\Ubuntu\home\mertb\acp-net\artifacts\packages'
+dotnet test src/acp-net/AcpNetMvp.slnx --logger "console;verbosity=minimal"
+dotnet pack src/acp-net/Acp.Net.Process/Acp.Net.Process.csproj --output artifacts/packages
+dotnet pack src/acp-net/Acp.Net.Testing/Acp.Net.Testing.csproj --output artifacts/packages
+node src/openclaw-probe/verify-doctor-adapter-draft.mjs
 ```
 
-Expected:
+All tests should pass, both packages should pack successfully, and the adapter verifier should report `doctor adapter scenarios ok (4)`.
 
-```text
-Acp.Net.Process: ok
-Acp.Net.Testing: ok
-```
+On Windows + WSL setups, see [DEVELOPMENT_GUIDE.md](DEVELOPMENT_GUIDE.md) for how to pass WSL paths to a Windows `dotnet.exe`.
+
+## NuGet State
+
+Local package generation works for:
+
+- `Acp.Net.Process.0.1.0-alpha.1`
+- `Acp.Net.Testing.0.1.0-alpha.1`
+
+No package has been published. Package metadata carries the correct repository/project URL and the Apache-2.0 license expression. Publication still requires:
+
+- an explicit publish decision from the project owner,
+- a NuGet API key and the `NUGET_API_KEY` repository secret,
+- a final package ID availability check immediately before push.
+
+See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the full gate list.
 
 ## Important Findings
 
 1. `AgentClientProtocol` remains useful for protocol-level types and connection behavior.
 2. Acp.Net's value is process/runtime/testing/diagnostic behavior around ACP.
 3. WSL path mapping is not incidental; real Gemini dogfood exposed it.
-4. Tool preflight matters; `rg` missing was detected before agent execution.
+4. Tool preflight matters; a missing `rg` was detected before agent execution.
 5. OpenClaw already has ACPX as runtime backend, so Acp.Net should not replace it.
 6. OpenClaw integration should stay reference/diagnostic unless a formal proposal is prepared.
 
@@ -103,24 +109,10 @@ Acp.Net.Testing: ok
 
 - API is still alpha-level.
 - Diagnostics CLI is intentionally still a sample/tool, not a packaged product.
-- Some historical docs contain old absolute paths from the previous OpenClaw workspace location.
-- Node child process to Windows interop failed in the Codex sandbox with `UtilBindVsockAnyPort`; this must not be ignored for OpenClaw integration.
+- Running a Node child process that calls Windows interop executables from inside WSL failed in a sandboxed environment (`UtilBindVsockAnyPort`); this must be re-verified outside the sandbox before any OpenClaw integration work.
 - No NuGet publication has happened yet.
 - Training Factory remains unproven and should stay out of the MVP path.
-- License is Apache-2.0.
 
-## Path Note
+## Engineering Notes Archive
 
-The active repository path is now:
-
-```text
-/home/mertb/acp-net
-```
-
-Some historical spike reports and handoff notes still contain the old path under:
-
-```text
-/home/mertb/.openclaw/workspace/acp-net-training-factory
-```
-
-Treat those paths as historical evidence from the original spike runs. For current commands, use `README.md`, this file, and `docs/DEVELOPMENT_GUIDE.md`.
+Dated spike reports (001–014) and daily handoff notes were moved out of this repository on 2026-06-10. They are maintained as the maintainer's local engineering notes, independent of this repository and its GitHub remote. The durable decisions distilled from them live in [decisions/](decisions/).

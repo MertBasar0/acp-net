@@ -1,5 +1,7 @@
 # OpenClaw Subagent Runner Sample
 
+🇹🇷 Türkçe sürüm: [README.tr.md](README.tr.md)
+
 This sample simulates the smallest useful OpenClaw integration shape:
 
 1. Start an ACP-compatible subagent process.

@@ -1,62 +1,64 @@
-# Acp.Net MVP Urun Tasarimi
+# Acp.Net MVP Product Design
 
-Tarih: 2026-06-07
+> 🇹🇷 Türkçe sürüm: [acp-net-mvp-product-design.tr.md](acp-net-mvp-product-design.tr.md)
 
-## Urun Iddiasi
+Date: 2026-06-07
 
-Acp.Net, .NET icin yeni bir tam ACP protokol SDK'si olarak konumlanmayacak.
+## Product Claim
 
-Acp.Net'in ilk urun iddiasi:
+Acp.Net will not be positioned as a new full ACP protocol SDK for .NET.
 
-> .NET uygulamalarinda ACP agent process'lerini guvenilir sekilde baslatmak, yonetmek, debug etmek ve test etmek icin process/runtime/testing katmani.
+Acp.Net's initial product claim is:
 
-Bu konum, mevcut `AgentClientProtocol` paketinin yerine gecmek yerine onu tamamlamayi hedefler.
+> A process/runtime/testing layer for reliably starting, managing, debugging, and testing ACP agent processes from .NET applications.
 
-## Hedef Kullanici
+This position aims to complement the existing `AgentClientProtocol` package instead of replacing it.
 
-Ilk hedef kullanici:
+## Target User
 
-- ACP agent'i .NET uygulamasindan baslatmak isteyen gelistirici.
-- Windows uzerinde WSL/Linux agent calistiran gelistirici.
-- Stdio tabanli agent entegrasyonunu test etmek isteyen SDK/IDE/plugin gelistiricisi.
-- CI'da agent process lifecycle testlerini deterministik yapmak isteyen ekip.
+Initial target users:
 
-Hedef disi:
+- A developer who wants to start an ACP agent from a .NET application.
+- A developer running a WSL/Linux agent on Windows.
+- An SDK/IDE/plugin developer who wants to test stdio-based agent integration.
+- A team that wants deterministic agent process lifecycle tests in CI.
 
-- ACP protokol specification'ini bastan modellemek isteyenler.
-- UI/editor entegrasyonu arayanlar.
-- Training Factory veya RL urunlesmesi.
-- Genel purpose process manager arayanlar.
+Out of scope:
 
-## MVP Paketleri
+- People who want to remodel the ACP protocol specification from scratch.
+- People looking for UI/editor integration.
+- Training Factory or RL productization.
+- People looking for a general-purpose process manager.
 
-Ilk paketleme iki parcaya ayrilmali.
+## MVP Packages
+
+The first packaging splits into two parts.
 
 ### Acp.Net.Process
 
-Sorumluluk:
+Responsibilities:
 
-- ACP agent process baslatma.
-- stdin/stdout/stderr yonetimi.
+- Starting the ACP agent process.
+- Managing stdin/stdout/stderr.
 - Windows/WSL runtime bridge.
-- path normalization.
-- timeout ve shutdown stratejisi.
-- raw transcript yakalama.
+- Path normalization.
+- Timeout and shutdown strategy.
+- Raw transcript capture.
 
-Bu paket protocol schema'larini sahiplenmez. Mevcut `AgentClientProtocol` paketiyle beraber calisabilmelidir.
+This package does not own protocol schemas. It must be able to work together with the existing `AgentClientProtocol` package.
 
 ### Acp.Net.Testing
 
-Sorumluluk:
+Responsibilities:
 
 - Fake ACP agent/server.
-- Transcript assertion helper.
-- Golden transcript testleri.
-- Timeout/cancel/process-exit senaryolari icin test fixture.
+- Transcript assertion helpers.
+- Golden transcript tests.
+- Test fixtures for timeout/cancel/process-exit scenarios.
 
-Bu paket test odakli olmalidir; production runtime bagimliligi minimum tutulmalidir.
+This package must stay test-focused; production runtime dependencies must be kept minimal.
 
-## MVP'ye Girecekler
+## In Scope For The MVP
 
 - `AcpProcessRunner`
 - `AcpProcessOptions`
@@ -65,26 +67,26 @@ Bu paket test odakli olmalidir; production runtime bagimliligi minimum tutulmali
 - `AcpTranscriptRecorder`
 - `AcpShutdownPolicy`
 - `FakeAcpAgent`
-- transcript assertion helper
+- transcript assertion helpers
 
-## MVP'ye Girmeyecekler
+## Out Of Scope For The MVP
 
-- Tam ACP schema modeli.
-- `InitializeRequest`, `PromptRequest` gibi typed protocol surface'i.
+- Full ACP schema model.
+- Typed protocol surface such as `InitializeRequest`, `PromptRequest`.
 - UI/dashboard.
 - Provider marketplace.
-- Training Factory entegrasyonu.
+- Training Factory integration.
 - PX4/Gazebo/drone workflow.
-- Long-running daemon/service yonetimi.
+- Long-running daemon/service management.
 
-## Basit API Taslagi
+## Initial API Sketch
 
 ```csharp
 var runner = new AcpProcessRunner(new AcpProcessOptions
 {
     Command = "python3",
-    Arguments = ["/home/mertb/agent.py"],
-    WorkingDirectory = "/home/mertb/project",
+    Arguments = ["/home/<user>/agent.py"],
+    WorkingDirectory = "/home/<user>/project",
     Runtime = AcpRuntime.Auto,
     TranscriptPath = "agent-transcript.ndjson",
     Shutdown = AcpShutdownPolicy.GracefulThenKill(TimeSpan.FromSeconds(2))
@@ -102,19 +104,19 @@ connection.Open();
 var init = await connection.InitializeAsync(...);
 ```
 
-Windows host + WSL agent icin:
+For a Windows host + WSL agent:
 
 ```csharp
 var runner = new AcpProcessRunner(new AcpProcessOptions
 {
     Command = "python3",
-    Arguments = ["/home/mertb/agent.py"],
+    Arguments = ["/home/<user>/agent.py"],
     Runtime = AcpRuntime.Wsl,
     WslDistribution = "Ubuntu"
 });
 ```
 
-Test helper icin:
+For the test helper:
 
 ```csharp
 await using var fake = await FakeAcpAgent.StartAsync(new FakeAcpAgentOptions
@@ -128,53 +130,57 @@ await using var fake = await FakeAcpAgent.StartAsync(new FakeAcpAgentOptions
 var runner = AcpProcessRunner.ForExistingProcess(fake.Process);
 ```
 
-## Basari Kriterleri
+## Success Criteria
 
-MVP degerli sayilmasi icin:
+For the MVP to count as valuable:
 
-1. `AgentClientProtocol` ile beraber calisan minimal sample sunar.
-2. Windows `dotnet.exe` -> WSL `python3` agent senaryosunu tek ayarla calistirir.
-3. stdin/stdout/stderr akisini kayipsiz transcript olarak kaydeder.
-4. Process kapanmazsa once graceful shutdown, sonra hard kill uygular.
-5. CI'da fake ACP agent ile timeout/cancel/streaming testleri deterministik kosar.
-6. Entegrasyon yapan uygulama kodundaki process glue miktarini belirgin azaltir.
+1. It offers a minimal sample working together with `AgentClientProtocol`.
+2. It runs the Windows `dotnet.exe` -> WSL `python3` agent scenario with a single setting.
+3. It records the stdin/stdout/stderr flow as a lossless transcript.
+4. If the process does not exit, it applies graceful shutdown first, then hard kill.
+5. Timeout/cancel/streaming tests run deterministically in CI with the fake ACP agent.
+6. It visibly reduces the amount of process glue code in integrating applications.
 
-## Urun Degeri
+## Product Value
 
-Deger protokol typing'de degil, entegrasyon maliyetini dusurmede.
+The value is not in protocol typing but in lowering integration cost.
 
-Mevcut paketin iyi oldugu alan:
+Where the existing package is good:
 
-- ACP method isimleri.
-- schema tipleri.
-- request/notification dispatch.
+- ACP method names.
+- Schema types.
+- Request/notification dispatch.
 
-Acp.Net'in iyi olmasi gereken alan:
+Where Acp.Net must be good:
 
-- gercek process davranisi.
-- Windows/WSL gercekligi.
-- debug edilebilirlik.
-- test edilebilirlik.
+- Real process behavior.
+- Windows/WSL reality.
+- Debuggability.
+- Testability.
 
-## Riskler
+## Risks
 
-- Kapsam tekrar tam SDK'ya kayabilir.
-- Mevcut `AgentClientProtocol` paketi bu helper'lari eklerse fark azalir.
-- Windows/WSL senaryolari makineye ve distro'ya gore degisebilir.
-- Test helper ile production runner ayni pakete koyulursa API sisebilir.
+- Scope can drift back toward a full SDK.
+- If the existing `AgentClientProtocol` package adds these helpers, the differentiation shrinks.
+- Windows/WSL scenarios can vary by machine and distro.
+- If test helpers and the production runner land in the same package, the API can bloat.
 
-## Mitigasyon
+## Mitigation
 
-- Protokol schema yazilmamali; mevcut paketle entegrasyon tercih edilmeli.
-- Process ve Testing paketleri ayrilmali.
-- Ilk MVP sadece stdio ACP agent senaryosuna odaklanmali.
-- Her feature bir failing integration testten gelmeli.
+- Do not write protocol schemas; prefer integration with the existing package.
+- Keep Process and Testing packages separate.
+- Focus the first MVP only on the stdio ACP agent scenario.
+- Every feature should come from a failing integration test.
 
-## 2026-06-07 API Hardening Notu
+## Design Notes Log
 
-Paket id'leri `Acp.Net.Process` ve `Acp.Net.Testing` olarak korundu. C# namespace'leri ise `AcpNet.Process` ve `AcpNet.Testing` olarak sadeleştirildi. Bunun nedeni `Acp.Net.Process` namespace'inin `System.Diagnostics.Process` ile gereksiz isim carpismasi yaratmasidir.
+The notes below record how the design evolved during implementation. The detailed spike session reports behind them are maintained as the maintainer's local engineering notes outside this repository.
 
-Ilk alpha public yuzeyi su tipe daraltildi:
+### 2026-06-07 API Hardening Note
+
+Package ids stayed `Acp.Net.Process` and `Acp.Net.Testing`. The C# namespaces were simplified to `AcpNet.Process` and `AcpNet.Testing`, because an `Acp.Net.Process` namespace creates an unnecessary name collision with `System.Diagnostics.Process`.
+
+The first alpha public surface was narrowed to:
 
 - `AcpProcessRunner`
 - `AcpProcessOptions`
@@ -185,110 +191,103 @@ Ilk alpha public yuzeyi su tipe daraltildi:
 - `FakeAcpAgentScript`
 - `AcpTranscriptAssert`
 
-## 2026-06-07 Gemini Dogfood Notu
+### 2026-06-07 Gemini Dogfood Note
 
-Gercek Gemini CLI ACP agent ile dogfood basarili oldu. Bu dogfood `AcpProcessSession.ToAgentPath(...)` ihtiyacini ortaya cikardi: agent WSL icinde calistiginda sadece process start path'i degil, ACP payload icindeki `cwd` gibi path alanlari da WSL path'e donusturulmeli.
+Dogfooding with the real Gemini CLI ACP agent succeeded. It exposed the need for `AcpProcessSession.ToAgentPath(...)`: when the agent runs inside WSL, not only the process start path but also path fields inside ACP payloads such as `cwd` must be converted to WSL paths.
 
-Ek urunlestirme gereksinimi:
+Additional productization requirement:
 
-- WSL non-login process ortaminda PATH farklari gorulebiliyor. Gemini stderr'da `Ripgrep is not available. Falling back to GrepTool.` uyarisi goruldu. Runner ileride environment/PATH veya login-shell stratejisi sunmali.
+- PATH differences can appear in WSL non-login process environments. Gemini stderr showed `Ripgrep is not available. Falling back to GrepTool.`. The runner should eventually offer an environment/PATH or login-shell strategy.
 
-## 2026-06-07 Runtime Environment Shaping Notu
+### 2026-06-07 Runtime Environment Shaping Note
 
-Bu gereksinim icin ilk API eklendi:
+The first APIs for this requirement were added:
 
 - `AcpProcessOptions.Environment`
 - `AcpProcessOptions.AdditionalPathEntries`
 - `AcpProcessOptions.RequiredExecutables`
 
-Runner artik agent baslamadan once required executable preflight yapip transcript'e `preflight.tool.found` veya `preflight.tool.missing` event'i yaziyor.
+The runner now preflights required executables before the agent starts and writes `preflight.tool.found` or `preflight.tool.missing` events into the transcript.
 
-Gemini dogfood'da `rg` eksikligi agent calismadan once `preflight.tool.missing` olarak yakalandi; `git` ve `node` bulundu.
+In the Gemini dogfood, a missing `rg` was caught as `preflight.tool.missing` before the agent ran; `git` and `node` were found.
 
-## 2026-06-09 OpenClaw Runtime Substrate Notu
+### 2026-06-09 OpenClaw Runtime Substrate Note
 
-Spike 008-010 sonucunda Acp.Net'in OpenClaw icindeki muhtemel rolu daha netlesti.
+After spikes 008–010, Acp.Net's probable role inside OpenClaw became clearer.
 
-Acp.Net, OpenClaw icin core orchestrator degil; ACP-compatible agent/subagent process'lerini guvenilir ve denetlenebilir sekilde calistiran runtime substrate olarak konumlanmali.
+Acp.Net is not a core orchestrator for OpenClaw; it should be positioned as a runtime substrate that runs ACP-compatible agent/subagent processes reliably and auditably.
 
-Eklenen urun kabiliyetleri:
+Added product capabilities:
 
-- per-tool preflight policy: `Warn` veya `Throw`
+- per-tool preflight policy: `Warn` or `Throw`
 - fail-fast environment failure
 - `AcpPreflightException`
 - `AcpRunFailureKind`
-- makine-okunabilir `AcpRunArtifact`
+- machine-readable `AcpRunArtifact`
 - `RunArtifactPath`
-- OpenClaw-style deterministic subagent runner sample
+- an OpenClaw-style deterministic subagent runner sample
 
-Bu karar su ayrimi urunlesme acisindan merkezi hale getirir:
+This decision makes the following distinction central to productization:
 
-> Agent basarisizligi ile environment basarisizligi ayni sey degildir.
+> Agent failure and environment failure are not the same thing.
 
-OpenClaw gibi bir orkestrator, agent sonucunu degerlendirmeden once runtime environment'in saglamligini bilmelidir. Acp.Net'in degeri bu kanit katmanini saglamasidir.
+An orchestrator like OpenClaw must know the health of the runtime environment before judging the agent result. Acp.Net's value is providing that evidence layer.
 
-## 2026-06-09 Spike 011 OpenClaw Probe Notu
+### 2026-06-09 Spike 011 OpenClaw Probe Note
 
-OpenClaw kaynak agacinda `extensions/acpx` zaten ACP runtime/backend ve process lease yonetimi sagliyor. Bu nedenle Acp.Net'i OpenClaw'a dogrudan ikinci bir runtime olarak eklemek erken.
+The OpenClaw source tree already provides ACP runtime/backend and process lease management through `extensions/acpx`. Adding Acp.Net as a second runtime inside OpenClaw is therefore premature.
 
-Spike 011'de iki entegrasyon sekli denendi:
+Two integration shapes were tried in spike 011:
 
-- C# external command probe basarili oldu.
-- Node wrapper probe, Codex sandbox altinda Node child process -> Windows interop sinirinda `UtilBindVsockAnyPort` hatasina takildi.
+- The C# external command probe succeeded.
+- The Node wrapper probe hit a `UtilBindVsockAnyPort` error at the Node child process -> Windows interop boundary under a sandboxed environment.
 
-Bu bulgu Acp.Net'in degerini azaltmiyor; tersine OpenClaw entegrasyonunda runtime boundary'nin ne kadar kritik oldugunu tekrar gosteriyor.
+This finding does not reduce Acp.Net's value; it shows again how critical the runtime boundary is for OpenClaw integration.
 
-Bir sonraki karar, Acp.Net'in OpenClaw'da hangi rolde daha az tekrar ve daha cok deger urettigidir:
+### 2026-06-09 Spike 012 ACPX Contract Decision
 
-- external diagnostic command,
-- ACPX backend adapter helper,
-- test harness package,
-- veya sadece run artifact/failure contract saglayicisi.
+The OpenClaw `extensions/acpx` and `packages/acp-core` contracts were reviewed.
 
-## 2026-06-09 Spike 012 ACPX Contract Karari
+Decision:
 
-OpenClaw `extensions/acpx` ve `packages/acp-core` contract'leri incelendi.
+> Acp.Net must not be an ACPX runtime backend replacement.
 
-Karar:
+Rationale:
 
-> Acp.Net, ACPX runtime backend replacement olmamali.
+- ACPX already implements OpenClaw's session/turn/event runtime contract.
+- ACPX integrates process lease and cleanup state with OpenClaw's plugin state system.
+- Acp.Net's strongest side is not runtime event streaming; it is process evidence, preflight, failure classification, and the test harness.
 
-Gerekce:
+Short-term product path:
 
-- ACPX zaten OpenClaw'in session/turn/event runtime contract'ini uyguluyor.
-- ACPX process lease ve cleanup state'ini OpenClaw plugin state sistemiyle entegre ediyor.
-- Acp.Net'in en guclu yani runtime event streaming degil; process evidence, preflight, failure classification ve test harness.
+1. Stabilize the Acp.Net diagnostic command contract.
+2. Let OpenClaw call it as a doctor/plugin command.
+3. Demonstrate the environment-failure vs agent-failure distinction through artifacts and transcripts.
+4. Enter deeper ACPX integration only after the command contract proves useful.
 
-Kisa vadeli urun yolu:
+### 2026-06-09 Spike 013 Diagnostic Command Note
 
-1. Acp.Net diagnostic command contract'ini stabilize et.
-2. OpenClaw bunu doctor/plugin command olarak cagirabilsin.
-3. Artifact ve transcript uzerinden environment failure ile agent failure ayrimini gostersin.
-4. Derin ACPX entegrasyonuna ancak bu command contract kullanisli olduktan sonra girilsin.
+`openclaw-acpnet-probe` now provides a more stable CLI contract.
 
-## 2026-06-09 Spike 013 Diagnostic Command Notu
+Supported decisions:
 
-`openclaw-acpnet-probe` artik daha stabil bir CLI contract sagliyor.
+- stdout is reserved for one JSON result.
+- The exit code contract is fixed: `0`, `2`, `3`, `64`.
+- The fake-agent default is preserved, giving a verification path that spends no model quota.
+- `--command` and repeatable `--arg` were added for real ACP-compatible commands.
+- Tool policy arguments became external: `--required-tool` and `--optional-tool`.
 
-Desteklenen kararlar:
+This is the necessary intermediate productization step before touching OpenClaw core.
 
-- stdout tek JSON result icin ayrildi.
-- exit code sozlesmesi netlesti: `0`, `2`, `3`, `64`.
-- fake-agent default korunarak model kotasi harcamayan dogrulama yolu saglandi.
-- real ACP-compatible command icin `--command` ve repeatable `--arg` eklendi.
-- tool policy argumanlari `--required-tool` ve `--optional-tool` olarak disaridan verilebilir hale geldi.
+### 2026-06-09 Spike 014 Doctor Adapter Note
 
-Bu, OpenClaw core'a dogrudan kod eklemeden once gerekli ara urunlesme adimidir.
+The mapping contract from the diagnostic command result to OpenClaw doctor/lint surfaces was prepared.
 
-## 2026-06-09 Spike 014 Doctor Adapter Notu
+Decision:
 
-Diagnostic command sonucunun OpenClaw doctor/lint yuzeylerine mapping contract'i hazirlandi.
+- `AcpRuntimeDoctorReport` is the right surface for the runtime doctor.
+- `HealthFinding[]` is the right surface for doctor lint.
+- A missing optional tool can stay `ok=true` for the runtime doctor but must be a `warning` finding on the lint surface.
+- A critical environment failure must be an error for both doctor and lint.
 
-Karar:
-
-- `AcpRuntimeDoctorReport` runtime doctor icin uygun yuzey.
-- `HealthFinding[]` doctor lint icin uygun yuzey.
-- Optional tool eksikligi runtime doctor icin `ok=true` kalabilir ama lint yuzeyinde `warning` finding olmalidir.
-- Critical environment failure doctor ve lint icin error olmalidir.
-
-Bu, Acp.Net'in OpenClaw'a ilk entegrasyonunun doctor/lint evidence seklinde olmasi gerektigini guclendirir.
+This reinforces that Acp.Net's first OpenClaw integration should take the shape of doctor/lint evidence.

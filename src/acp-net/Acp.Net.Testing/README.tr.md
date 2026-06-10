@@ -1,16 +1,16 @@
 # Acp.Net.Testing
 
-Fake ACP agent and transcript assertion helpers for .NET ACP integration tests.
+.NET ACP entegrasyon testleri için sahte ACP agent ve transcript doğrulama yardımcıları.
 
-🇹🇷 Türkçe sürüm: [README.tr.md](README.tr.md)
+🇬🇧 English version: [README.md](README.md)
 
-## Install
+## Kurulum
 
 ```bash
 dotnet add package Acp.Net.Testing --prerelease
 ```
 
-## Fake Agent
+## Sahte Agent
 
 ```csharp
 using AcpNet.Testing;
@@ -19,7 +19,7 @@ var artifactDir = Path.Combine(Directory.GetCurrentDirectory(), "artifacts");
 var agentPath = FakeAcpAgentScript.WriteDefault(artifactDir);
 ```
 
-`WriteDefault` creates a small stdio ACP agent that supports:
+`WriteDefault`, şunları destekleyen küçük bir stdio ACP agent'ı oluşturur:
 
 - `initialize`
 - `session/new`
@@ -27,11 +27,11 @@ var agentPath = FakeAcpAgentScript.WriteDefault(artifactDir);
 - streaming `session/update`
 - `session/cancel`
 
-## Transcript Assertions
+## Transcript Doğrulamaları
 
 ```csharp
 AcpTranscriptAssert.ExistsAndNotEmpty("agent-transcript.ndjson");
 AcpTranscriptAssert.Contains("agent-transcript.ndjson", "session/update");
 ```
 
-Use this package with `Acp.Net.Process` and a protocol package such as `AgentClientProtocol`.
+Bu paketi `Acp.Net.Process` ve `AgentClientProtocol` gibi bir protokol paketiyle birlikte kullanın.

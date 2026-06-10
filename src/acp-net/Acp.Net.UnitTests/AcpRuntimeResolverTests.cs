@@ -26,7 +26,7 @@ public sealed class AcpRuntimeResolverTests
         var resolved = AcpRuntimeResolver.Resolve(new AcpProcessOptions
         {
             Command = "python3",
-            Arguments = [@"\\wsl.localhost\Ubuntu\home\mertb\agent.py"],
+            Arguments = [@"\\wsl.localhost\Ubuntu\home\user\agent.py"],
             Runtime = AcpRuntime.Wsl,
             WslDistribution = "Ubuntu"
         });
@@ -34,7 +34,7 @@ public sealed class AcpRuntimeResolverTests
         Assert.True(resolved.UsesWsl);
         Assert.Equal("wsl.exe", resolved.StartInfo.FileName);
         Assert.Contains("-d Ubuntu", resolved.StartInfo.Arguments);
-        Assert.Contains("/home/mertb/agent.py", resolved.StartInfo.Arguments);
+        Assert.Contains("/home/user/agent.py", resolved.StartInfo.Arguments);
     }
 
     [Fact]
@@ -45,11 +45,11 @@ public sealed class AcpRuntimeResolverTests
             Command = "gemini",
             Arguments = ["--acp"],
             Runtime = AcpRuntime.Wsl,
-            AdditionalPathEntries = [@"\\wsl.localhost\Ubuntu\home\mertb\bin", "/opt/tools"]
+            AdditionalPathEntries = [@"\\wsl.localhost\Ubuntu\home\user\bin", "/opt/tools"]
         });
 
         Assert.True(resolved.StartInfo.Environment.TryGetValue("PATH", out var path));
-        Assert.StartsWith("/home/mertb/bin:/opt/tools:", path);
+        Assert.StartsWith("/home/user/bin:/opt/tools:", path);
     }
 
     [Fact]

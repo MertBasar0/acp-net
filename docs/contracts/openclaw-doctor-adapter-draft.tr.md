@@ -1,18 +1,18 @@
-# OpenClaw Doctor Adapter Draft
+# OpenClaw Doctor Adapter Taslağı
 
-> 🇹🇷 Türkçe sürüm: [openclaw-doctor-adapter-draft.tr.md](openclaw-doctor-adapter-draft.tr.md)
+> 🇬🇧 English version: [openclaw-doctor-adapter-draft.md](openclaw-doctor-adapter-draft.md)
 
-Date: 2026-06-09
+Tarih: 2026-06-09
 
-This file defines how the Acp.Net diagnostic command result maps onto OpenClaw doctor/lint surfaces.
+Bu dosya, Acp.Net tanılama komutu sonucunun OpenClaw doctor/lint yüzeylerine nasıl eşleneceğini tanımlar.
 
-## Source Contract
+## Kaynak Kontrat
 
-Source command:
+Kaynak komut:
 
 `src/samples/openclaw-acpnet-probe/`
 
-The command prints one JSON result to stdout:
+Komut stdout'a tek bir JSON sonucu basar:
 
 ```json
 {
@@ -33,20 +33,20 @@ The command prints one JSON result to stdout:
 }
 ```
 
-Exit code contract:
+Exit code sözleşmesi:
 
 ```text
 0   ok=true
-2   environment/preflight failure
-3   runtime/protocol/agent/unknown failure
-64  invalid CLI configuration
+2   environment/preflight hatası
+3   runtime/protokol/agent/bilinmeyen hata
+64  geçersiz CLI konfigürasyonu
 ```
 
-## Target OpenClaw Surfaces
+## Hedef OpenClaw Yüzeyleri
 
-### Runtime Doctor Report
+### Runtime Doctor Raporu
 
-The matching model on the OpenClaw ACP runtime side:
+OpenClaw ACP runtime tarafındaki uygun model:
 
 ```ts
 type AcpRuntimeDoctorReport = {
@@ -58,9 +58,9 @@ type AcpRuntimeDoctorReport = {
 };
 ```
 
-### Structured Health Finding
+### Yapılandırılmış Health Finding
 
-The matching model on the OpenClaw doctor lint side:
+OpenClaw doctor lint tarafındaki uygun model:
 
 ```ts
 interface HealthFinding {
@@ -74,11 +74,11 @@ interface HealthFinding {
 }
 ```
 
-## Mapping Rules
+## Eşleme Kuralları
 
-### Successful Run
+### Başarılı Çalıştırma
 
-Condition:
+Koşul:
 
 ```text
 ok=true
@@ -87,7 +87,7 @@ criticalMissing=[]
 warnings=[]
 ```
 
-Doctor report:
+Doctor raporu:
 
 ```json
 {
@@ -98,18 +98,18 @@ Doctor report:
 
 Health finding:
 
-- no finding.
+- finding yok.
 
-### Success With Warnings
+### Uyarılı Başarı
 
-Condition:
+Koşul:
 
 ```text
 ok=true
 warnings.length > 0
 ```
 
-Doctor report:
+Doctor raporu:
 
 ```json
 {
@@ -134,9 +134,9 @@ Health finding:
 }
 ```
 
-### Environment Failure
+### Environment Hatası
 
-Condition:
+Koşul:
 
 ```text
 exitCode=2
@@ -144,7 +144,7 @@ failureKind=EnvironmentFailure
 criticalMissing.length > 0
 ```
 
-Doctor report:
+Doctor raporu:
 
 ```json
 {
@@ -169,16 +169,16 @@ Health finding:
 }
 ```
 
-### Configuration Failure
+### Konfigürasyon Hatası
 
-Condition:
+Koşul:
 
 ```text
 exitCode=64
 failureKind=ConfigurationFailure
 ```
 
-Doctor report:
+Doctor raporu:
 
 ```json
 {
@@ -202,16 +202,16 @@ Health finding:
 }
 ```
 
-### Process / Protocol / Agent / Unknown Failure
+### Process / Protokol / Agent / Bilinmeyen Hata
 
-Condition:
+Koşul:
 
 ```text
 exitCode=3
 failureKind in ProcessFailure | ProtocolFailure | AgentFailure | Unknown
 ```
 
-Doctor report:
+Doctor raporu:
 
 ```json
 {
@@ -235,7 +235,7 @@ Health finding:
 }
 ```
 
-## Adapter Pseudocode
+## Adapter Sözde Kodu
 
 ```ts
 function mapProbeResultToDoctorReport(result, exitCode): AcpRuntimeDoctorReport {
@@ -279,13 +279,13 @@ function mapProbeResultToDoctorReport(result, exitCode): AcpRuntimeDoctorReport 
 }
 ```
 
-## Open Questions
+## Açık Sorular
 
-1. Should OpenClaw call this probe inside `doctor --lint`, inside `acpx doctor`, or as a separate plugin command?
-2. How will the Node runtime -> Windows interop error be overcome?
-3. What should the doctor exit code be when the probe result contains warnings?
-   - For `doctor --lint --severity-min warning`, exit 1 if there is any finding.
-   - For the runtime doctor report, `ok=true` can stay.
-4. Should `installCommand` only be used for system packages?
-   - Example: `sudo apt install ripgrep`
-   - Because of Windows/WSL and distro differences, `fixHint` is the safer default.
+1. OpenClaw bu probe'u `doctor --lint` içinde mi, `acpx doctor` içinde mi, yoksa ayrı bir plugin komutu olarak mı çağırmalı?
+2. Node runtime -> Windows interop hatası nasıl aşılacak?
+3. Probe sonucunda uyarı varken doctor exit code ne olmalı?
+   - `doctor --lint --severity-min warning` için finding varsa exit 1.
+   - Runtime doctor raporu için `ok=true` kalabilir.
+4. `installCommand` sadece sistem paketleri için mi kullanılmalı?
+   - Örnek: `sudo apt install ripgrep`
+   - Windows/WSL ve distro farkları nedeniyle varsayılan olarak `fixHint` daha güvenli.

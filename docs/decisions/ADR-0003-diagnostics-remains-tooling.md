@@ -1,5 +1,7 @@
 # ADR-0003: Keep Diagnostics As Tooling For Now
 
+> 🇹🇷 Türkçe sürüm: [ADR-0003-diagnostics-remains-tooling.tr.md](ADR-0003-diagnostics-remains-tooling.tr.md)
+
 Date: 2026-06-10
 
 ## Status

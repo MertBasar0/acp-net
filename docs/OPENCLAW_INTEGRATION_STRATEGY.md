@@ -1,5 +1,7 @@
 # OpenClaw Integration Strategy
 
+> 🇹🇷 Türkçe sürüm: [OPENCLAW_INTEGRATION_STRATEGY.tr.md](OPENCLAW_INTEGRATION_STRATEGY.tr.md)
+
 Last updated: 2026-06-10
 
 ## Decision
@@ -64,12 +66,12 @@ If an OpenClaw PR is ever proposed, it should be small and integration-point ori
 
 ## Current Reference Artifacts
 
-- `src/samples/openclaw-acpnet-probe/`
-- `src/openclaw-probe/doctor-adapter-draft.mjs`
-- `docs/contracts/openclaw-doctor-adapter-draft.md`
-- `docs/contracts/openclaw-doctor-mapping.scenarios.json`
-- `docs/spikes/011-openclaw-plugin-command-integration-probe-result.md`
-- `docs/spikes/012-openclaw-acpx-contract-comparison-result.md`
-- `docs/spikes/013-acpnet-diagnostic-command-stabilization-result.md`
-- `docs/spikes/014-openclaw-doctor-adapter-draft-result.md`
+In this repository:
 
+- `src/samples/openclaw-acpnet-probe/` — stabilized diagnostic command probe
+- `src/openclaw-probe/doctor-adapter-draft.mjs` — doctor/lint adapter draft
+- `src/openclaw-probe/verify-doctor-adapter-draft.mjs` — adapter scenario verifier
+- `docs/contracts/openclaw-doctor-adapter-draft.md` — mapping contract
+- `docs/contracts/openclaw-doctor-mapping.scenarios.json` — scenario fixtures
+
+The dated spike reports (011–014) that produced these artifacts are maintained as the maintainer's local engineering notes outside this repository. Their durable conclusions are recorded in [decisions/ADR-0002](decisions/ADR-0002-independent-package-openclaw-reference.md) and [decisions/ADR-0003](decisions/ADR-0003-diagnostics-remains-tooling.md).

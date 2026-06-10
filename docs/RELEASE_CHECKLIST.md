@@ -1,25 +1,23 @@
 # Release Checklist
 
+> 🇹🇷 Türkçe sürüm: [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md)
+
 Last updated: 2026-06-10
 
-Use this before any alpha NuGet publication.
-
-Latest prepublish check result:
-
-- `docs/plans/2026-06-10-nuget-prepublish-check.md`
+Use this before any alpha NuGet publication. For current project state see [CURRENT_STATUS.md](CURRENT_STATUS.md).
 
 ## Current Publication Decision
 
-Do not publish to NuGet yet without an explicit publish command from the project owner.
+Do not publish to NuGet without an explicit publish decision from the project owner.
 
-The current repository can produce local alpha packages, and Apache-2.0 is selected. Public NuGet publication still needs final package ID availability confirmation, a NuGet API key, and generated package metadata recheck after the final release commit.
+The repository can produce local alpha packages and Apache-2.0 is selected. Public NuGet publication still needs final package ID availability confirmation, a NuGet API key, and a package metadata recheck on the final release commit.
 
 ## Required Before Alpha
 
 - Public API names reviewed.
 - Package descriptions reviewed.
 - License selected by project owner.
-- NuGet API key created for workflow file `publish.yml`.
+- NuGet API key created for the publish workflow.
 - GitHub repository secret `NUGET_API_KEY` configured.
 - Package ID availability checked immediately before publish.
 - README examples tested from a fresh clone.
@@ -33,12 +31,16 @@ The current repository can produce local alpha packages, and Apache-2.0 is selec
 
 ## Verification Commands
 
+From the repository root:
+
 ```bash
-dotnet test '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\AcpNetMvp.slnx' --logger 'console;verbosity=minimal'
-dotnet pack '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\Acp.Net.Process\Acp.Net.Process.csproj' --no-restore --output '\\wsl.localhost\Ubuntu\home\mertb\acp-net\artifacts\packages'
-dotnet pack '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\Acp.Net.Testing\Acp.Net.Testing.csproj' --no-restore --output '\\wsl.localhost\Ubuntu\home\mertb\acp-net\artifacts\packages'
+dotnet test src/acp-net/AcpNetMvp.slnx --logger "console;verbosity=minimal"
+dotnet pack src/acp-net/Acp.Net.Process/Acp.Net.Process.csproj --output artifacts/packages
+dotnet pack src/acp-net/Acp.Net.Testing/Acp.Net.Testing.csproj --output artifacts/packages
 node src/openclaw-probe/verify-doctor-adapter-draft.mjs
 ```
+
+On Windows + WSL setups see the path note in [DEVELOPMENT_GUIDE.md](DEVELOPMENT_GUIDE.md).
 
 ## Do Not Publish If
 
@@ -59,7 +61,7 @@ node src/openclaw-probe/verify-doctor-adapter-draft.mjs
 
 ## Package ID Check
 
-Checked on 2026-06-10 through NuGet flat-container API:
+Checked on 2026-06-10 through the NuGet flat-container API:
 
 - `https://api.nuget.org/v3-flatcontainer/acp.net.process/index.json`: 404
 - `https://api.nuget.org/v3-flatcontainer/acp.net.testing/index.json`: 404
@@ -71,13 +73,16 @@ Interpretation: these package IDs were not published at check time. Recheck imme
 Publishing workflow file:
 
 ```text
-publish.yml
-```
-
-Full repository path:
-
-```text
 .github/workflows/publish.yml
 ```
 
 The workflow is manually triggered and requires `confirm_publish=publish`. It uses the `NUGET_API_KEY` repository secret.
+
+## Recommended Publish Order
+
+1. Re-run test and pack.
+2. Recheck package IDs.
+3. Push `.nupkg` packages.
+4. Push `.snupkg` symbol packages.
+5. Confirm NuGet package pages show Apache-2.0, README, repository URL, and prerelease version.
+6. Confirm GitHub repository visibility matches the release decision.

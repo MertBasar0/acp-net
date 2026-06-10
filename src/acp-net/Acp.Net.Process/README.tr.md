@@ -1,10 +1,10 @@
 # Acp.Net.Process
 
-Process, runtime bridge, shutdown, and transcript helpers for .NET ACP integrations.
+.NET ACP entegrasyonları için process, runtime köprüsü, kapatma ve transcript yardımcıları.
 
-🇹🇷 Türkçe sürüm: [README.tr.md](README.tr.md)
+🇬🇧 English version: [README.md](README.md)
 
-## Minimal Runtime Policy Example
+## Minimal Runtime Politikası Örneği
 
 ```csharp
 var runner = new AcpProcessRunner(new AcpProcessOptions
@@ -22,17 +22,17 @@ var runner = new AcpProcessRunner(new AcpProcessOptions
 });
 ```
 
-Missing `Throw` tools fail before the agent starts and produce an `EnvironmentFailure` run artifact. Missing `Warn` tools are written to the transcript and artifact but the agent still starts.
+Eksik `Throw` araçları agent başlamadan önce başarısız olur ve `EnvironmentFailure` run artifact'i üretir. Eksik `Warn` araçları transcript'e ve artifact'e yazılır ama agent yine de başlar.
 
-This package intentionally does not model the ACP protocol schema. Use it with a protocol package such as `AgentClientProtocol`.
+Bu paket bilinçli olarak ACP protokol şemasını modellemez. `AgentClientProtocol` gibi bir protokol paketiyle birlikte kullanın.
 
-## Install
+## Kurulum
 
 ```bash
 dotnet add package Acp.Net.Process --prerelease
 ```
 
-## Basic Usage
+## Temel Kullanım
 
 ```csharp
 using AcpNet.Process;
@@ -62,7 +62,7 @@ var cwdForAgent = session.ToAgentPath(Directory.GetCurrentDirectory());
 
 ## Windows + WSL
 
-When a Windows .NET process needs to run a WSL/Linux ACP agent, use `AcpRuntime.Wsl` or leave `AcpRuntime.Auto` with WSL paths:
+Bir Windows .NET process'inin WSL/Linux ACP agent'ı çalıştırması gerektiğinde `AcpRuntime.Wsl` kullanın veya WSL path'leriyle `AcpRuntime.Auto`'yu bırakın:
 
 ```csharp
 var runner = new AcpProcessRunner(new AcpProcessOptions
@@ -74,10 +74,10 @@ var runner = new AcpProcessRunner(new AcpProcessOptions
 });
 ```
 
-The runner maps UNC/Windows paths to WSL paths and starts the process through `wsl.exe`.
-Use `session.ToAgentPath(...)` for ACP payload paths such as `NewSessionRequest.Cwd` when the agent runs in WSL.
+Runner, UNC/Windows path'lerini WSL path'lerine eşler ve process'i `wsl.exe` üzerinden başlatır.
+Agent WSL içinde çalışırken `NewSessionRequest.Cwd` gibi ACP payload path'leri için `session.ToAgentPath(...)` kullanın.
 
-## Environment Shaping
+## Environment Şekillendirme
 
 ```csharp
 var runner = new AcpProcessRunner(new AcpProcessOptions
@@ -94,7 +94,7 @@ var runner = new AcpProcessRunner(new AcpProcessOptions
 });
 ```
 
-`RequiredExecutables` are checked before the agent starts and written to the transcript as `preflight.tool.found` or `preflight.tool.missing` events.
+`RequiredExecutables`, agent başlamadan önce kontrol edilir ve transcript'e `preflight.tool.found` veya `preflight.tool.missing` olayları olarak yazılır.
 
 ## Public API
 

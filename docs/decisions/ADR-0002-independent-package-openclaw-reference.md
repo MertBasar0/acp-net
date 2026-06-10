@@ -1,5 +1,7 @@
 # ADR-0002: Independent Package, OpenClaw As Reference Consumer
 
+> 🇹🇷 Türkçe sürüm: [ADR-0002-independent-package-openclaw-reference.tr.md](ADR-0002-independent-package-openclaw-reference.tr.md)
+
 Date: 2026-06-10
 
 ## Status
@@ -8,7 +10,7 @@ Accepted.
 
 ## Context
 
-During spikes 011-014, Acp.Net was evaluated against OpenClaw integration needs.
+During spikes 011–014, Acp.Net was evaluated against OpenClaw integration needs. (The spike session reports are maintained as the maintainer's local engineering notes outside this repository.)
 
 OpenClaw already has ACPX runtime support in `extensions/acpx`. That runtime owns session/turn semantics, process lease state, and cleanup behavior. Adding Acp.Net directly into OpenClaw core would risk duplicating ACPX responsibilities and would require a difficult maintainer review.
 

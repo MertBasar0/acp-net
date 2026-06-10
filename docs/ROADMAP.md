@@ -1,5 +1,7 @@
 # Roadmap
 
+> 🇹🇷 Türkçe sürüm: [ROADMAP.tr.md](ROADMAP.tr.md)
+
 Last updated: 2026-06-10
 
 ## Product Goal
@@ -23,7 +25,7 @@ Goals:
 - initialize git
 - push to standalone GitHub repo
 - document current status and next steps
-- preserve spike history
+- preserve spike history (now maintained as local engineering notes outside the repository; durable outcomes live in `docs/decisions/`)
 
 ## Phase 1: Alpha Package Hardening
 

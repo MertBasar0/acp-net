@@ -1,29 +1,33 @@
 # ACP Incumbent Comparison Spike
 
-Bu klasor, `AgentClientProtocol` NuGet paketi ile Acp.Net icin dusunulen platform/process helper yaklasimini ayni mock ACP agent uzerinde karsilastirir.
+🇹🇷 Türkçe sürüm: [README.tr.md](README.tr.md)
 
-## Dosyalar
+This folder compares the `AgentClientProtocol` NuGet package with the platform/process helper approach considered for Acp.Net, against the same mock ACP agent. The decision distilled from this comparison is recorded in [ADR-0001](../../../docs/decisions/ADR-0001-incumbent-comparison-decision.md).
 
-- `AcpIncumbentComparison.csproj`: .NET 8 console spike projesi.
-- `Program.cs`: iki karsilastirma modu.
+## Files
+
+- `AcpIncumbentComparison.csproj`: .NET 8 console spike project.
+- `Program.cs`: the two comparison modes.
 - `mock_acp_agent.py`: stdio JSON-RPC mock ACP agent.
 
-## Modlar
+## Modes
 
-- `incumbent`: `AgentClientProtocol` paketinin `ClientSideConnection` API'sini kullanir.
-- `acpnet`: raw JSON-RPC + process bridge wrapper yaklasimini kullanir.
-- `both`: iki modu arka arkaya calistirir.
+- `incumbent`: uses the `ClientSideConnection` API of the `AgentClientProtocol` package.
+- `acpnet`: uses the raw JSON-RPC + process bridge wrapper approach.
+- `both`: runs both modes back to back.
 
-## Beklenen komut
+## Run
 
-Bu makinede WSL icinden Windows `dotnet.exe` kullanildigi icin proje yolu UNC olarak verilmelidir:
+From the repository root:
 
 ```bash
-dotnet run --project '\\wsl.localhost\Ubuntu\home\mertb\.openclaw\workspace\acp-net-training-factory\src\spikes\acp-incumbent-comparison\AcpIncumbentComparison.csproj' -- both
+dotnet run --project src/spikes/acp-incumbent-comparison/AcpIncumbentComparison.csproj -- both
 ```
 
-## Beklenen cikti
+On Windows + WSL setups see the path note in [docs/DEVELOPMENT_GUIDE.md](../../../docs/DEVELOPMENT_GUIDE.md).
+
+## Expected Output
 
 - `incumbent-transcript.ndjson`
 - `acpnet-style-transcript.ndjson`
-- terminalde score summary
+- a score summary in the terminal
