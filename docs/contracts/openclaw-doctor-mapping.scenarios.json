@@ -1,0 +1,161 @@
+{
+  "scenarios": [
+    {
+      "name": "clean_success",
+      "exitCode": 0,
+      "probeResult": {
+        "kind": "openclaw.acpnet.probe.result",
+        "ok": true,
+        "result": "completed",
+        "failureKind": "None",
+        "failureMessage": null,
+        "agentName": "fake",
+        "usesWsl": true,
+        "runArtifactPath": "artifacts/probe-run.json",
+        "transcriptPath": "artifacts/probe-transcript.ndjson",
+        "preflight": {
+          "total": 1,
+          "criticalMissing": [],
+          "warnings": [],
+          "tools": [
+            {
+              "name": "python3",
+              "found": true,
+              "path": "/usr/bin/python3",
+              "error": null,
+              "missingPolicy": "Throw"
+            }
+          ]
+        }
+      },
+      "doctorReport": {
+        "ok": true,
+        "message": "Acp.Net diagnostic probe completed."
+      },
+      "healthFindings": []
+    },
+    {
+      "name": "optional_tool_warning",
+      "exitCode": 0,
+      "probeResult": {
+        "kind": "openclaw.acpnet.probe.result",
+        "ok": true,
+        "result": "completed",
+        "failureKind": "None",
+        "failureMessage": null,
+        "agentName": "fake",
+        "usesWsl": true,
+        "runArtifactPath": "artifacts/probe-run.json",
+        "transcriptPath": "artifacts/probe-transcript.ndjson",
+        "preflight": {
+          "total": 2,
+          "criticalMissing": [],
+          "warnings": [
+            {
+              "name": "rg",
+              "found": false,
+              "path": null,
+              "error": "which exited 1",
+              "missingPolicy": "Warn"
+            }
+          ],
+          "tools": []
+        }
+      },
+      "doctorReport": {
+        "ok": true,
+        "code": "ACPNET_PREFLIGHT_WARNING",
+        "message": "Acp.Net diagnostic probe completed with optional runtime warnings.",
+        "details": [
+          "Optional tool missing: rg (which exited 1)"
+        ]
+      },
+      "healthFindings": [
+        {
+          "checkId": "plugin/acpnet/diagnostic-probe",
+          "severity": "warning",
+          "message": "Acp.Net optional runtime tool is missing: rg",
+          "source": "acpnet",
+          "target": "rg",
+          "requirement": "optional executable",
+          "fixHint": "Install rg in the agent runtime or pass it through PATH/AdditionalPathEntries."
+        }
+      ]
+    },
+    {
+      "name": "environment_failure",
+      "exitCode": 2,
+      "probeResult": {
+        "kind": "openclaw.acpnet.probe.result",
+        "ok": false,
+        "result": "failed",
+        "failureKind": "EnvironmentFailure",
+        "failureMessage": "ACP process preflight failed. Missing required executable(s): git.",
+        "runArtifactPath": "artifacts/probe-run.json",
+        "transcriptPath": "artifacts/probe-transcript.ndjson",
+        "preflight": {
+          "total": 1,
+          "criticalMissing": [
+            {
+              "name": "git",
+              "found": false,
+              "path": null,
+              "error": "which exited 1",
+              "missingPolicy": "Throw"
+            }
+          ],
+          "warnings": [],
+          "tools": []
+        }
+      },
+      "doctorReport": {
+        "ok": false,
+        "code": "ACPNET_ENVIRONMENT_FAILURE",
+        "message": "Acp.Net diagnostic probe failed before the agent started.",
+        "details": [
+          "Critical tool missing: git (which exited 1)"
+        ]
+      },
+      "healthFindings": [
+        {
+          "checkId": "plugin/acpnet/diagnostic-probe",
+          "severity": "error",
+          "message": "Acp.Net critical runtime tool is missing: git",
+          "source": "acpnet",
+          "target": "git",
+          "requirement": "critical executable",
+          "fixHint": "Install git in the agent runtime or configure the probe with a valid PATH."
+        }
+      ]
+    },
+    {
+      "name": "configuration_failure",
+      "exitCode": 64,
+      "probeResult": {
+        "kind": "openclaw.acpnet.probe.result",
+        "ok": false,
+        "result": "failed",
+        "failureKind": "ConfigurationFailure",
+        "failureMessage": "--arg requires --command."
+      },
+      "doctorReport": {
+        "ok": false,
+        "code": "ACPNET_PROBE_CONFIG_INVALID",
+        "message": "Acp.Net diagnostic probe configuration is invalid.",
+        "details": [
+          "--arg requires --command."
+        ]
+      },
+      "healthFindings": [
+        {
+          "checkId": "plugin/acpnet/diagnostic-probe",
+          "severity": "error",
+          "message": "Acp.Net diagnostic probe configuration is invalid: --arg requires --command.",
+          "source": "acpnet",
+          "requirement": "valid probe configuration",
+          "fixHint": "Fix the Acp.Net probe command arguments."
+        }
+      ]
+    }
+  ]
+}

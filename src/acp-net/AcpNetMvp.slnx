@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Acp.Net.IntegrationTests/Acp.Net.IntegrationTests.csproj" />
+  <Project Path="Acp.Net.Process/Acp.Net.Process.csproj" />
+  <Project Path="Acp.Net.Testing/Acp.Net.Testing.csproj" />
+  <Project Path="Acp.Net.UnitTests/Acp.Net.UnitTests.csproj" />
+</Solution>

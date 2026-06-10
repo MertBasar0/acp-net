@@ -1,0 +1,47 @@
+{
+  "kind": "openclaw.acpnet.probe.result",
+  "ok": true,
+  "result": "completed",
+  "failureKind": "None",
+  "failureMessage": null,
+  "protocol": 1,
+  "sessionId": "fake-session-1",
+  "stopReason": "EndTurn",
+  "chunks": [
+    "hello",
+    " world"
+  ],
+  "agentName": "openclaw-fake-acp-subagent",
+  "usesWsl": true,
+  "runArtifactPath": "\\\\wsl.localhost\\Ubuntu\\home\\mertb\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-run.json",
+  "transcriptPath": "\\\\wsl.localhost\\Ubuntu\\home\\mertb\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-transcript.ndjson",
+  "preflight": {
+    "total": 2,
+    "criticalMissing": [],
+    "warnings": [
+      {
+        "name": "rg",
+        "found": false,
+        "path": null,
+        "error": "which exited 1",
+        "missingPolicy": "Warn"
+      }
+    ],
+    "tools": [
+      {
+        "name": "python3",
+        "found": true,
+        "path": "/usr/bin/python3",
+        "error": null,
+        "missingPolicy": "Throw"
+      },
+      {
+        "name": "rg",
+        "found": false,
+        "path": null,
+        "error": "which exited 1",
+        "missingPolicy": "Warn"
+      }
+    ]
+  }
+}

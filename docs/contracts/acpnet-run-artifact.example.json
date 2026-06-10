@@ -1,0 +1,31 @@
+{
+  "runId": "c34e8a02dca446af89bd283d1db5fa7a",
+  "agentName": "openclaw-fake-acp-subagent",
+  "workingDirectory": "\\\\wsl.localhost\\Ubuntu\\home\\mertb\\acp-net",
+  "usesWsl": true,
+  "resolvedCommandLine": "wsl.exe --cd /home/mertb/acp-net -- python3 /home/mertb/acp-net/artifacts/openclaw-probe/20260608-212704/fake_acp_agent.py",
+  "result": "completed",
+  "failureKind": "None",
+  "failureMessage": null,
+  "transcriptPath": "\\\\wsl.localhost\\Ubuntu\\home\\mertb\\acp-net\\artifacts\\openclaw-probe\\20260608-212704\\probe-transcript.ndjson",
+  "preflight": [
+    {
+      "name": "python3",
+      "found": true,
+      "path": "/usr/bin/python3",
+      "error": null,
+      "missingPolicy": "Throw",
+      "isFailure": false
+    },
+    {
+      "name": "rg",
+      "found": false,
+      "path": null,
+      "error": "which exited 1",
+      "missingPolicy": "Warn",
+      "isFailure": false
+    }
+  ],
+  "startedAt": "2026-06-08T21:27:04.5684566+00:00",
+  "endedAt": "2026-06-08T21:27:04.9283624+00:00"
+}

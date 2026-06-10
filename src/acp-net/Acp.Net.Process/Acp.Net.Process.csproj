@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Acp.Net.Process</PackageId>
+    <Version>0.1.0-alpha.1</Version>
+    <Authors>Mert Basar</Authors>
+    <Description>Process, runtime bridge, shutdown, and transcript helpers for .NET ACP integrations.</Description>
+    <PackageTags>ACP;AgentClientProtocol;process;stdio;WSL;testing</PackageTags>
+    <RepositoryUrl>https://github.com/openclaw/openclaw</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
