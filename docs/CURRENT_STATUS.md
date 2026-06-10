@@ -107,6 +107,7 @@ Acp.Net.Testing: ok
 - Node child process to Windows interop failed in the Codex sandbox with `UtilBindVsockAnyPort`; this must not be ignored for OpenClaw integration.
 - No NuGet publication has happened yet.
 - Training Factory remains unproven and should stay out of the MVP path.
+- License is Apache-2.0.
 
 ## Path Note
 

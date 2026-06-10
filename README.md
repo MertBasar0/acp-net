@@ -105,3 +105,7 @@ The next recommended work is not an OpenClaw core PR. The next work should harde
 5. keep OpenClaw integration as reference/dogfood material.
 
 Training Factory remains a later, unproven product line. It should not drive current Acp.Net packaging decisions.
+
+## License
+
+Acp.Net is licensed under the Apache License 2.0. See [LICENSE](LICENSE).

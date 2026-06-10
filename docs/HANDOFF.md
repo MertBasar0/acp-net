@@ -54,11 +54,11 @@ dotnet pack '\\wsl.localhost\Ubuntu\home\mertb\acp-net\src\acp-net\Acp.Net.Testi
 ## Next Best Work
 
 1. Review public API names in `Acp.Net.Process`.
-2. Decide license.
+2. Review public API names in `Acp.Net.Testing`.
 3. Add minimal API docs/XML comments for public types.
 4. Keep diagnostics as repository tooling while the contract settles.
 5. Inspect generated alpha packages locally.
-6. Prepare alpha packages but do not publish before API and license review.
+6. Prepare alpha packages but do not publish before API and publish review.
 
 ## NuGet State
 
@@ -67,7 +67,7 @@ Local package generation works for:
 - `Acp.Net.Process.0.1.0-alpha.1`
 - `Acp.Net.Testing.0.1.0-alpha.1`
 
-Do not publish yet. The package metadata has the correct repository/project URL, but license metadata is intentionally unset until the project owner chooses a license.
+Do not publish yet. The package metadata has the correct repository/project URL and Apache-2.0 license expression. Publishing still needs final package ID availability confirmation, a NuGet API key, and an explicit publish decision.
 
 ## Decisions To Avoid Reopening Too Early
 

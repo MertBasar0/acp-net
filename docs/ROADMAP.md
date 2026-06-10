@@ -35,7 +35,7 @@ Goals:
 - add XML docs or minimal API docs
 - ensure `dotnet test` and `dotnet pack` are one-command reproducible
 - add CI workflow
-- decide license
+- license selected: Apache-2.0
 
 Candidate output:
 

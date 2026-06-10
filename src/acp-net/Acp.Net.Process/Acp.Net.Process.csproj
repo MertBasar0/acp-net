@@ -6,13 +6,17 @@
     <PackageId>Acp.Net.Process</PackageId>
     <Version>0.1.0-alpha.1</Version>
     <Authors>Mert Basar</Authors>
+    <Copyright>Copyright 2026 Mert Basar</Copyright>
     <Description>Process, runtime bridge, shutdown, and transcript helpers for .NET ACP integrations.</Description>
     <PackageTags>ACP;AgentClientProtocol;process;stdio;WSL;testing</PackageTags>
     <PackageProjectUrl>https://github.com/MertBasar0/acp-net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MertBasar0/acp-net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageReleaseNotes>Initial alpha package for ACP-compatible local agent process runtime, preflight checks, transcript recording, and run artifacts.</PackageReleaseNotes>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
