@@ -143,6 +143,38 @@ public sealed class AcpProcessIntegrationTests
         AcpTranscriptAssert.Contains(transcriptPath, "process.hard_kill");
     }
 
+    [Fact]
+    public async Task StartAsync_KillsProcessWhenCancelledAfterLaunch()
+    {
+        var artifactDir = PrepareArtifactDir("start-cancelled");
+        var agentPath = FakeAcpAgentScript.WriteHanging(artifactDir);
+        var transcriptPath = Path.Combine(artifactDir, "start-cancelled-transcript.ndjson");
+        var runArtifactPath = Path.Combine(artifactDir, "start-cancelled-run.json");
+
+        var runner = new AcpProcessRunner(new AcpProcessOptions
+        {
+            AgentName = "fake-acp-agent",
+            Command = "python3",
+            Arguments = [agentPath],
+            Runtime = AcpRuntime.Auto,
+            TranscriptPath = transcriptPath,
+            RunArtifactPath = runArtifactPath
+        });
+
+        using var cancelled = new CancellationTokenSource();
+        cancelled.Cancel();
+
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => runner.StartAsync(cancelled.Token));
+
+        AcpTranscriptAssert.ExistsAndNotEmpty(transcriptPath);
+        AcpTranscriptAssert.Contains(transcriptPath, "process.start_cancelled");
+
+        Assert.True(File.Exists(runArtifactPath));
+        var artifact = File.ReadAllText(runArtifactPath);
+        Assert.Contains("\"result\": \"failed\"", artifact);
+        Assert.Contains("\"failureKind\": \"ProcessFailure\"", artifact);
+    }
+
     static string PrepareArtifactDir(string name)
     {
         var dir = Path.Combine(Directory.GetCurrentDirectory(), "artifacts", name);

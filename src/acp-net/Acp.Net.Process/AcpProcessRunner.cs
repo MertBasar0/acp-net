@@ -51,8 +51,38 @@ public sealed class AcpProcessRunner(AcpProcessOptions options)
         }
 
         transcript.Event("process.started", new { process.Id });
-        await Task.Yield();
-        cancellationToken.ThrowIfCancellationRequested();
+
+        if (cancellationToken.IsCancellationRequested)
+        {
+            // The caller cancelled after launch; the process must not leak.
+            try
+            {
+                process.Kill(entireProcessTree: true);
+                await process.WaitForExitAsync(CancellationToken.None);
+                transcript.Event("process.start_cancelled", new { process.ExitCode });
+            }
+            catch (Exception ex)
+            {
+                transcript.Event("process.start_cancel_kill_failed", new { error = ex.Message });
+            }
+            finally
+            {
+                process.Dispose();
+            }
+
+            SaveTranscript(transcript);
+            AcpRunArtifactWriter.Save(
+                options,
+                resolved,
+                runId,
+                startedAt,
+                result: "failed",
+                failureKind: AcpRunFailureKind.ProcessFailure,
+                failureMessage: "Start was cancelled after the process launched; the process was killed.",
+                preflight: preflightResults);
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
         return new AcpProcessSession(process, options, resolved, transcript, runId, startedAt, preflightResults);
     }
 
