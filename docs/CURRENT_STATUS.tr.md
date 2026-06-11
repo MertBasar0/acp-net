@@ -83,18 +83,14 @@ Windows + WSL kurulumlarında, WSL path'lerinin Windows `dotnet.exe`'ye nasıl v
 
 ## NuGet Durumu
 
-Yerel paket üretimi şunlar için çalışıyor:
+İlk alpha paketleri 2026-06-11 tarihinde, nuget.org trusted publishing (GitHub Actions OIDC) kullanan `publish.yml` workflow'u üzerinden yayınlandı:
 
-- `Acp.Net.Process.0.1.0-alpha.1`
-- `Acp.Net.Testing.0.1.0-alpha.1`
+- [Acp.Net.Process 0.1.0-alpha.1](https://www.nuget.org/packages/Acp.Net.Process)
+- [Acp.Net.Testing 0.1.0-alpha.1](https://www.nuget.org/packages/Acp.Net.Testing)
 
-Hiçbir paket yayınlanmadı. Paket metadata'sı doğru depo/proje URL'sini ve Apache-2.0 lisans ifadesini taşıyor. Yayın için hâlâ gerekenler:
+Sembol paketleri (`.snupkg`) birlikte gönderildi. Paket metadata'sı doğru depo/proje URL'sini ve Apache-2.0 lisans ifadesini taşıyor.
 
-- proje sahibinden açık bir yayın kararı,
-- bu depo için etkin bir nuget.org trusted publishing (güvenilir yayıncı) politikası,
-- push'tan hemen önce son bir paket ID uygunluk kontrolü.
-
-Tam kapı listesi için [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md) dosyasına bakın.
+Gelecek sürümler aynı elle tetiklenen workflow üzerinden gider; kapı listesi için [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md) dosyasına bakın.
 
 ## Önemli Bulgular
 

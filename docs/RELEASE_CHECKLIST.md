@@ -56,7 +56,7 @@ On Windows + WSL setups see the path note in [DEVELOPMENT_GUIDE.md](DEVELOPMENT_
 - `RepositoryType`: `git`
 - `PackageLicenseExpression`: `Apache-2.0`
 - `SymbolPackageFormat`: `snupkg`
-- Published packages: none
+- Published packages: `Acp.Net.Process 0.1.0-alpha.1`, `Acp.Net.Testing 0.1.0-alpha.1` (2026-06-11)
 
 ## Package ID Check
 

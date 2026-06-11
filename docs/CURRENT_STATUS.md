@@ -83,18 +83,14 @@ On Windows + WSL setups, see [DEVELOPMENT_GUIDE.md](DEVELOPMENT_GUIDE.md) for ho
 
 ## NuGet State
 
-Local package generation works for:
+First alpha packages were published on 2026-06-11 through the `publish.yml` workflow using nuget.org trusted publishing (GitHub Actions OIDC):
 
-- `Acp.Net.Process.0.1.0-alpha.1`
-- `Acp.Net.Testing.0.1.0-alpha.1`
+- [Acp.Net.Process 0.1.0-alpha.1](https://www.nuget.org/packages/Acp.Net.Process)
+- [Acp.Net.Testing 0.1.0-alpha.1](https://www.nuget.org/packages/Acp.Net.Testing)
 
-No package has been published. Package metadata carries the correct repository/project URL and the Apache-2.0 license expression. Publication still requires:
+Symbol packages (`.snupkg`) were pushed alongside. Package metadata carries the correct repository/project URL and the Apache-2.0 license expression.
 
-- an explicit publish decision from the project owner,
-- an active nuget.org trusted publishing policy for this repository,
-- a final package ID availability check immediately before push.
-
-See [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the full gate list.
+Future releases go through the same manually triggered workflow; see [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the gate list.
 
 ## Important Findings
 
