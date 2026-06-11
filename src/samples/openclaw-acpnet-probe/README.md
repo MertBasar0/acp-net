@@ -12,7 +12,7 @@ It acts like a command that an OpenClaw plugin/tool wrapper could execute:
 4. write the Acp.Net transcript and run artifact,
 5. print one OpenClaw-oriented JSON result to stdout.
 
-It does not use Gemini or Claude quota.
+By default it does not call any LLM or model API.
 
 Run:
 

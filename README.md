@@ -85,7 +85,7 @@ doctor adapter scenarios ok (4)
 
 ## Documentation
 
-Read these first when resuming work:
+Key documents:
 
 - [Current Status](docs/CURRENT_STATUS.md) — single source of truth for project state
 - [Roadmap](docs/ROADMAP.md)
@@ -106,8 +106,6 @@ The next recommended work is not an OpenClaw core PR. The next work should harde
 3. improve docs and examples,
 4. prepare first alpha NuGet packages,
 5. keep OpenClaw integration as reference/dogfood material.
-
-Training Factory remains a later, unproven product line. It should not drive current Acp.Net packaging decisions.
 
 ## License
 

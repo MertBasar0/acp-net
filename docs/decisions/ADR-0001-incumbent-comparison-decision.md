@@ -65,8 +65,6 @@ The next technical work is designing the Acp.Net MVP with a narrow scope:
 - `Acp.Net.Testing`
 - a stdio harness that can work together with the existing `AgentClientProtocol` package
 
-Training Factory stays outside this decision. For now it is kept as post-Acp.Net dogfooding or a second-track spike.
-
 ## Evidence
 
 The comparison score table and run transcripts are recorded in the spike session reports (spike 001), kept in the untracked `notes/` folder at the repository root (ignored by git, not pushed to the remote). The executable comparison code remains in `src/spikes/acp-incumbent-comparison/`.

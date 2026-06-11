@@ -27,7 +27,6 @@ Hedef dışı:
 
 - ACP protokol spesifikasyonunu baştan modellemek isteyenler.
 - UI/editor entegrasyonu arayanlar.
-- Training Factory veya RL ürünleşmesi.
 - Genel amaçlı process manager arayanlar.
 
 ## MVP Paketleri
@@ -75,8 +74,6 @@ Bu paket test odaklı kalmalıdır; üretim runtime bağımlılığı minimumda 
 - `InitializeRequest`, `PromptRequest` gibi typed protokol yüzeyi.
 - UI/dashboard.
 - Sağlayıcı pazaryeri.
-- Training Factory entegrasyonu.
-- PX4/Gazebo/drone iş akışı.
 - Uzun süre çalışan daemon/servis yönetimi.
 
 ## Basit API Taslağı
@@ -240,7 +237,7 @@ OpenClaw kaynak ağacında `extensions/acpx` zaten ACP runtime/backend ve proces
 Spike 011'de iki entegrasyon şekli denendi:
 
 - C# harici komut probe'u başarılı oldu.
-- Node wrapper probe'u, sandbox'lı bir ortamda Node child process -> Windows interop sınırında `UtilBindVsockAnyPort` hatasına takıldı.
+- Node wrapper probe'u, kısıtlı bir çalıştırma ortamında Node child process -> Windows interop sınırında `UtilBindVsockAnyPort` hatasına takıldı.
 
 Bu bulgu Acp.Net'in değerini azaltmıyor; tersine OpenClaw entegrasyonunda runtime sınırının ne kadar kritik olduğunu tekrar gösteriyor.
 

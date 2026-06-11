@@ -27,7 +27,6 @@ Out of scope:
 
 - People who want to remodel the ACP protocol specification from scratch.
 - People looking for UI/editor integration.
-- Training Factory or RL productization.
 - People looking for a general-purpose process manager.
 
 ## MVP Packages
@@ -75,8 +74,6 @@ This package must stay test-focused; production runtime dependencies must be kep
 - Typed protocol surface such as `InitializeRequest`, `PromptRequest`.
 - UI/dashboard.
 - Provider marketplace.
-- Training Factory integration.
-- PX4/Gazebo/drone workflow.
 - Long-running daemon/service management.
 
 ## Initial API Sketch
@@ -240,7 +237,7 @@ The OpenClaw source tree already provides ACP runtime/backend and process lease 
 Two integration shapes were tried in spike 011:
 
 - The C# external command probe succeeded.
-- The Node wrapper probe hit a `UtilBindVsockAnyPort` error at the Node child process -> Windows interop boundary under a sandboxed environment.
+- The Node wrapper probe hit a `UtilBindVsockAnyPort` error at the Node child process -> Windows interop boundary in a restricted execution environment.
 
 This finding does not reduce Acp.Net's value; it shows again how critical the runtime boundary is for OpenClaw integration.
 

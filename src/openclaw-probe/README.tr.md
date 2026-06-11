@@ -36,7 +36,7 @@ node src/openclaw-probe/openclaw-acpnet-probe.mjs
 }
 ```
 
-Bu probe, deterministik sahte ACP agent'ı kullanır. Gemini veya Claude kotası harcamaz.
+Bu probe, deterministik sahte ACP agent'ı kullanır. Herhangi bir LLM veya model API'si çağırmaz.
 
 ## Doctor Adapter Taslağı
 

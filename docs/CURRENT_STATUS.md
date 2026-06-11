@@ -105,9 +105,7 @@ Future releases go through the same manually triggered workflow; see [RELEASE_CH
 
 - API is still alpha-level.
 - Diagnostics CLI is intentionally still a sample/tool, not a packaged product.
-- Running a Node child process that calls Windows interop executables from inside WSL failed in a sandboxed environment (`UtilBindVsockAnyPort`); this must be re-verified outside the sandbox before any OpenClaw integration work.
-- No NuGet publication has happened yet.
-- Training Factory remains unproven and should stay out of the MVP path.
+- On some Windows + WSL setups, a Node child process that calls Windows interop executables can fail at the WSL interop boundary (`UtilBindVsockAnyPort`); this path needs dedicated verification before any OpenClaw integration work.
 
 ## Engineering Notes Archive
 

@@ -73,28 +73,15 @@ Hedefler:
 
 Hedefler:
 
-- Claude kotası kullanmadan kontrollü Gemini ACP dogfood'u çalıştır
+- Gemini CLI ACP modu ile kontrollü gerçek-agent doğrulaması çalıştır
 - transcript'leri opsiyonel yerel kanıt olarak sakla
 - özel `--command` tanılama yolunu doğrula
 - eksik/mevcut araç senaryolarını test et
-
-## Faz 5: Training Factory'ye Dönüş
-
-Training Factory rafta kalmaya devam ediyor.
-
-Ancak Acp.Net alpha paketleme netleştikten sonra yeniden ele alınmalı.
-
-Sıradaki yararlı Training Factory spike'ı:
-
-- random rollout değil
-- gerçek bir SB3 öğrenme baseline'ı kullan
-- öğrenmenin baseline'ı geçip geçmediğini kanıtla
 
 ## Şimdilik Açık Hedef-Dışılar
 
 - tam ACP protokol SDK'sının yerine geçmek
 - OpenClaw core PR'ı
 - ACPX'in yerine geçmek
-- Training Factory ürünleştirmesi
 - UI/dashboard
 - sağlayıcı pazaryeri

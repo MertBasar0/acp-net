@@ -12,7 +12,7 @@ Bir OpenClaw plugin/araç wrapper'ının çalıştırabileceği bir komut gibi d
 4. Acp.Net transcript'ini ve run artifact'ini yazar,
 5. stdout'a tek bir OpenClaw odaklı JSON sonucu basar.
 
-Gemini veya Claude kotası harcamaz.
+Varsayılan olarak herhangi bir LLM veya model API'si çağırmaz.
 
 Çalıştırma:
 

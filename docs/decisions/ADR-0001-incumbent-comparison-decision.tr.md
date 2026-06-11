@@ -65,8 +65,6 @@ Bir sonraki teknik iş, Acp.Net MVP'sini dar kapsamla tasarlamak:
 - `Acp.Net.Testing`
 - mevcut `AgentClientProtocol` paketiyle birlikte çalışabilen stdio harness
 
-Training Factory bu kararın dışında kalır. Şimdilik Acp.Net sonrası dogfooding veya ikinci hat spike olarak tutulur.
-
 ## Kanıt
 
 Karşılaştırma skor tablosu ve çalıştırma transcript'leri, depo kökündeki, git tarafından takip edilmeyen `notes/` klasöründe tutulan spike oturum raporlarında (spike 001) kayıtlıdır. Çalıştırılabilir karşılaştırma kodu `src/spikes/acp-incumbent-comparison/` altında durmaktadır.

@@ -85,7 +85,7 @@ doctor adapter scenarios ok (4)
 
 ## Dokümantasyon
 
-Çalışmaya dönerken önce şunları okuyun:
+Temel dokümanlar:
 
 - [Güncel Durum](docs/CURRENT_STATUS.tr.md) — proje durumu için tek doğruluk kaynağı
 - [Yol Haritası](docs/ROADMAP.tr.md)
@@ -106,8 +106,6 @@ Tüm çekirdek dokümanların İngilizce ana sürümleri aynı klasörde, `.tr.m
 3. doküman ve örnekleri iyileştir,
 4. ilk alpha NuGet paketlerini hazırla,
 5. OpenClaw entegrasyonunu referans/dogfood malzemesi olarak koru.
-
-Training Factory, henüz kanıtlanmamış ve sonraya bırakılmış bir ürün hattıdır. Mevcut Acp.Net paketleme kararlarını yönlendirmemelidir.
 
 ## Lisans
 

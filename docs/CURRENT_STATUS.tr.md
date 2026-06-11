@@ -105,9 +105,7 @@ Gelecek sürümler aynı elle tetiklenen workflow üzerinden gider; kapı listes
 
 - API hâlâ alpha seviyesinde.
 - Tanılama CLI'ı bilinçli olarak hâlâ sample/araç; paketlenmiş bir ürün değil.
-- WSL içinden Windows interop executable'larını çağıran bir Node child process, sandbox'lı bir ortamda başarısız oldu (`UtilBindVsockAnyPort`); herhangi bir OpenClaw entegrasyon çalışmasından önce sandbox dışında yeniden doğrulanmalı.
-- Henüz hiçbir NuGet yayını yapılmadı.
-- Training Factory kanıtlanmamış durumda ve MVP yolunun dışında kalmalı.
+- Bazı Windows + WSL kurulumlarında, Windows interop executable'larını çağıran bir Node child process WSL interop sınırında başarısız olabilir (`UtilBindVsockAnyPort`); herhangi bir OpenClaw entegrasyon çalışmasından önce bu yol ayrıca doğrulanmalı.
 
 ## Mühendislik Notları Arşivi
 

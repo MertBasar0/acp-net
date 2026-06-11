@@ -73,28 +73,15 @@ Goals:
 
 Goals:
 
-- run controlled Gemini ACP dogfood without Claude quota
+- run controlled real-agent verification with the Gemini CLI ACP mode
 - preserve transcripts as optional local evidence
 - verify custom `--command` diagnostics path
 - test missing/available tool scenarios
-
-## Phase 5: Training Factory Revisit
-
-Training Factory remains parked.
-
-Only revisit after Acp.Net alpha packaging is clear.
-
-Next useful Training Factory spike:
-
-- not random rollout
-- use a real SB3 learning baseline
-- prove whether learning improves over baseline
 
 ## Explicit Non-Goals For Now
 
 - full ACP protocol SDK replacement
 - OpenClaw core PR
 - replacing ACPX
-- Training Factory productization
 - UI/dashboard
 - provider marketplace

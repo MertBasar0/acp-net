@@ -36,7 +36,7 @@ Output contract:
 }
 ```
 
-This probe uses the deterministic fake ACP agent. It does not use Gemini or Claude quota.
+This probe uses the deterministic fake ACP agent. It does not call any LLM or model API.
 
 ## Doctor Adapter Draft
 
