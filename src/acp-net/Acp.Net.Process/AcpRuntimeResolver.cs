@@ -35,6 +35,16 @@ internal static class AcpRuntimeResolver
             return AcpRuntime.Wsl;
         }
 
+        // A bare command like `python3` resolves on Windows to the Microsoft Store
+        // execution-alias stub under WindowsApps, which hangs when launched from a
+        // non-interactive process. When that is the only native match, the command
+        // is meant for a POSIX runtime, so route it through WSL instead of launching
+        // a stub that would silently block.
+        if (AcpWindowsExecutableProbe.ResolvesOnlyToExecutionAliasStub(options.Command))
+        {
+            return AcpRuntime.Wsl;
+        }
+
         return AcpRuntime.Native;
     }
 

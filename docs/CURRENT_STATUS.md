@@ -47,12 +47,12 @@ Samples/tools:
 ## Implemented Capabilities
 
 - process launch through `AcpProcessRunner`
-- native/WSL runtime resolution
+- native/WSL runtime resolution (routes a bare command that resolves only to a Windows Store execution-alias stub through WSL instead of hanging)
 - Windows/WSL path mapping
 - `AcpProcessSession.ToAgentPath(...)`
 - environment variable shaping
 - `AdditionalPathEntries`
-- required/optional executable preflight
+- required/optional executable preflight (Windows Store execution-alias stubs are reported as missing, not found)
 - warning vs fail-fast preflight policy
 - `AcpPreflightException`
 - run failure classification
@@ -89,6 +89,8 @@ First alpha packages were published on 2026-06-11 through the `publish.yml` work
 - [Acp.Net.Testing 0.1.0-alpha.1](https://www.nuget.org/packages/Acp.Net.Testing)
 
 Symbol packages (`.snupkg`) were pushed alongside. Package metadata carries the correct repository/project URL and the Apache-2.0 license expression.
+
+`0.1.0-alpha.2` is in preparation. It fixes a Windows trap surfaced by a fresh-consumer test: a bare command such as `python3` resolves to a Microsoft Store execution-alias stub, which preflight reported as found and the runner then launched, hanging silently. The runtime resolver now routes such a command through WSL, and preflight reports the stub as missing instead.
 
 Future releases go through the same manually triggered workflow; see [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the gate list.
 

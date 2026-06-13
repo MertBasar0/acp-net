@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Acp.Net.Process</PackageId>
-    <Version>0.1.0-alpha.1</Version>
+    <Version>0.1.0-alpha.2</Version>
     <Authors>Mert Basar</Authors>
     <Copyright>Copyright 2026 Mert Basar</Copyright>
     <Description>Process, runtime bridge, shutdown, and transcript helpers for .NET ACP integrations.</Description>
@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Initial alpha package for ACP-compatible local agent process runtime, preflight checks, transcript recording, and run artifacts.</PackageReleaseNotes>
+    <PackageReleaseNotes>0.1.0-alpha.2: Windows fix — a bare command such as python3 that resolves only to a Windows Store execution-alias stub no longer hangs; AcpRuntime.Auto routes it through WSL and preflight reports the stub as missing. Also cleans up an already-started process when StartAsync is cancelled.</PackageReleaseNotes>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

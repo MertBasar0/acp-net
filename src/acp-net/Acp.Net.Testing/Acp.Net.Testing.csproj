@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Acp.Net.Testing</PackageId>
-    <Version>0.1.0-alpha.1</Version>
+    <Version>0.1.0-alpha.2</Version>
     <Authors>Mert Basar</Authors>
     <Copyright>Copyright 2026 Mert Basar</Copyright>
     <Description>Fake ACP agent and transcript assertions for .NET ACP integration tests.</Description>
@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Initial alpha package for deterministic fake ACP agents and transcript assertions.</PackageReleaseNotes>
+    <PackageReleaseNotes>0.1.0-alpha.2: version aligned with Acp.Net.Process; no API changes.</PackageReleaseNotes>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

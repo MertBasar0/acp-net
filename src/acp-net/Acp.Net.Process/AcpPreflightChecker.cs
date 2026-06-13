@@ -57,9 +57,32 @@ internal static class AcpPreflightChecker
             var stdout = (await stdoutTask).Trim();
             var stderr = (await stderrTask).Trim();
 
-            return process.ExitCode == 0 && stdout.Length > 0
-                ? new AcpExecutablePreflightResult(executable, Found: true, Path: stdout.Split('\n')[0].Trim(), Error: null, requirement.MissingPolicy)
-                : new AcpExecutablePreflightResult(executable, Found: false, Path: null, Error: stderr.Length > 0 ? stderr : $"which exited {process.ExitCode}", requirement.MissingPolicy);
+            if (process.ExitCode != 0 || stdout.Length == 0)
+            {
+                return new AcpExecutablePreflightResult(executable, Found: false, Path: null, Error: stderr.Length > 0 ? stderr : $"which exited {process.ExitCode}", requirement.MissingPolicy);
+            }
+
+            var matches = stdout
+                .Split('\n')
+                .Select(line => line.Trim())
+                .Where(line => line.Length > 0)
+                .ToArray();
+
+            // On Windows `where.exe python3` happily matches the Microsoft Store
+            // execution-alias stub under WindowsApps. Launching that stub from a
+            // non-interactive process hangs, so a result that contains only stubs
+            // must be reported as missing rather than found.
+            var realPath = agentStartInfo.UsesWsl
+                ? matches.FirstOrDefault()
+                : matches.FirstOrDefault(match => !AcpWindowsExecutableProbe.IsExecutionAliasStubFile(match));
+
+            if (realPath is null)
+            {
+                var stubHint = $"'{executable}' resolved only to a Windows Store execution alias ({matches[0]}); install it natively or run the agent under WSL (Runtime = AcpRuntime.Wsl).";
+                return new AcpExecutablePreflightResult(executable, Found: false, Path: null, Error: stubHint, requirement.MissingPolicy);
+            }
+
+            return new AcpExecutablePreflightResult(executable, Found: true, Path: realPath, Error: null, requirement.MissingPolicy);
         }
         catch (Exception ex) when (ex is not OperationCanceledException)
         {

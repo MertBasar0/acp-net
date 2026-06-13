@@ -47,12 +47,12 @@ Sample/araçlar:
 ## Gerçeklenmiş Kabiliyetler
 
 - `AcpProcessRunner` ile process başlatma
-- native/WSL runtime çözümleme
+- native/WSL runtime çözümleme (yalnızca bir Windows Store execution-alias stub'ına çözülen düz bir komutu, kilitlenmek yerine WSL'ye yönlendirir)
 - Windows/WSL path eşleme
 - `AcpProcessSession.ToAgentPath(...)`
 - environment değişkeni şekillendirme
 - `AdditionalPathEntries`
-- zorunlu/opsiyonel executable preflight
+- zorunlu/opsiyonel executable preflight (Windows Store execution-alias stub'ları bulundu değil, eksik olarak raporlanır)
 - uyarı (warning) ile hızlı-başarısızlık (fail-fast) preflight politikası ayrımı
 - `AcpPreflightException`
 - run hatası sınıflandırması
@@ -89,6 +89,8 @@ Windows + WSL kurulumlarında, WSL path'lerinin Windows `dotnet.exe`'ye nasıl v
 - [Acp.Net.Testing 0.1.0-alpha.1](https://www.nuget.org/packages/Acp.Net.Testing)
 
 Sembol paketleri (`.snupkg`) birlikte gönderildi. Paket metadata'sı doğru depo/proje URL'sini ve Apache-2.0 lisans ifadesini taşıyor.
+
+`0.1.0-alpha.2` hazırlanıyor. Taze-tüketici testinde ortaya çıkan bir Windows tuzağını düzeltir: `python3` gibi düz bir komut, bir Microsoft Store execution-alias stub'ına çözülüyor; preflight bunu "bulundu" sayıyor, runner başlatıyor ve sessizce kilitleniyordu. Runtime çözümleyici artık böyle bir komutu WSL'ye yönlendiriyor ve preflight stub'ı "eksik" olarak raporluyor.
 
 Gelecek sürümler aynı elle tetiklenen workflow üzerinden gider; kapı listesi için [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md) dosyasına bakın.
 

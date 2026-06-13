@@ -60,6 +60,13 @@ connection.Open();
 var cwdForAgent = session.ToAgentPath(Directory.GetCurrentDirectory());
 ```
 
+> **Windows notu:** `AcpRuntime.Auto`, bir WSL agent algılamadıkça komutu native
+> çalıştırır. `python3` gibi bir POSIX agent için `Runtime = AcpRuntime.Wsl`'i açıkça
+> verin (aşağıya bakın) veya `Auto`'yu WSL agent yoluyla kullanın. `0.1.0-alpha.2`
+> itibarıyla, `python3` gibi düz bir komut yalnızca bir Windows Store execution-alias
+> stub'ına çözüldüğünde `Auto` onu WSL'ye yönlendirir ve preflight, kilitlenmek yerine
+> stub'ı eksik olarak raporlar.
+
 ## Windows + WSL
 
 Bir Windows .NET process'inin WSL/Linux ACP agent'ı çalıştırması gerektiğinde `AcpRuntime.Wsl` kullanın veya WSL path'leriyle `AcpRuntime.Auto`'yu bırakın:
