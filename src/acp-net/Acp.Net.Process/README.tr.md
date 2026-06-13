@@ -24,7 +24,7 @@ var runner = new AcpProcessRunner(new AcpProcessOptions
 
 Eksik `Throw` araçları agent başlamadan önce başarısız olur ve `EnvironmentFailure` run artifact'i üretir. Eksik `Warn` araçları transcript'e ve artifact'e yazılır ama agent yine de başlar.
 
-Bu paket bilinçli olarak ACP protokol şemasını modellemez. `AgentClientProtocol` gibi bir protokol paketiyle birlikte kullanın.
+Bu paket bilinçli olarak ACP protokol şemasını modellemez. Agent'ın stdio stream'lerini üretir ve herhangi bir ACP protokol/JSON-RPC paketiyle çalışır — örneğin `AgentClientProtocol`, `dotacp` veya `LibAcp`. Sample'lar `AgentClientProtocol` kullanır.
 
 ## Kurulum
 

@@ -23,11 +23,9 @@ Tam bir ACP protokol SDK'sı **değildir** ve bir OpenClaw core fork'u değildir
 - protokol hatası: ACP/JSON-RPC akış sorunu
 - agent hatası: agent çalıştı ama devredilen görevde başarısız oldu
 
-## AgentClientProtocol İle İlişkisi
+## ACP Protokol Paketleriyle İlişkisi
 
-Acp.Net, mevcut `AgentClientProtocol` paketini tamamlar.
-
-`AgentClientProtocol`, protokol tipleri ve JSON-RPC client/agent bağlantı davranışı için kullanışlıdır. Acp.Net ise bu protokolün çevresindeki pratik runtime katmanına odaklanır:
+Acp.Net, ACP protokol tiplerini sahiplenmez; bu yüzden protokol-paketi-agnostiktir: agent'ın stdio stream'lerini üretir ve bunları tercih ettiğiniz ACP protokol/JSON-RPC paketine teslim eder — örneğin [`AgentClientProtocol`](https://www.nuget.org/packages/AgentClientProtocol), [`dotacp`](https://www.nuget.org/packages/dotacp.protocol) veya [`LibAcp`](https://www.nuget.org/packages/LibAcp). Bu paketler protokolü modeller ve JSON-RPC'yi *çağıranın sağladığı bir stream* üzerinden çalıştırır; her biri process başlatma ve platform interop'unu tüketiciye bırakır. Acp.Net işte o katmandır:
 
 - agent process'ini başlatmak
 - environment değişkenlerini ve PATH'i şekillendirmek
@@ -36,6 +34,8 @@ Acp.Net, mevcut `AgentClientProtocol` paketini tamamlar.
 - ham stdio ve yaşam döngüsü olaylarını kaydetmek
 - makine tarafından okunabilir run artifact'leri üretmek
 - process sınırı davranışını sahte agent'larla test etmek
+
+Sample'lar `AgentClientProtocol` kullanır, ama `Acp.Net.Process` içinde ona bağımlı hiçbir şey yoktur. Acp.Net'in diğer .NET ACP paketlerinin yanında nasıl konumlandığı için [docs/ECOSYSTEM.tr.md](docs/ECOSYSTEM.tr.md) dosyasına bakın.
 
 ## Depo Yapısı
 
@@ -93,6 +93,7 @@ Temel dokümanlar:
 - [OpenClaw Entegrasyon Stratejisi](docs/OPENCLAW_INTEGRATION_STRATEGY.tr.md)
 - [Sürüm Kontrol Listesi](docs/RELEASE_CHECKLIST.tr.md)
 - [Ürün Tasarımı](docs/product/acp-net-mvp-product-design.tr.md)
+- [Ekosistem Konumlandırması](docs/ECOSYSTEM.tr.md) — Acp.Net'in diğer .NET ACP paketlerinin yanındaki yeri
 - [Kararlar (ADR'ler)](docs/decisions/)
 
 Tüm çekirdek dokümanların İngilizce ana sürümleri aynı klasörde, `.tr.md` son eki olmadan bulunur.

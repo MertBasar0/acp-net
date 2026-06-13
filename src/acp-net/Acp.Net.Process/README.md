@@ -24,7 +24,7 @@ var runner = new AcpProcessRunner(new AcpProcessOptions
 
 Missing `Throw` tools fail before the agent starts and produce an `EnvironmentFailure` run artifact. Missing `Warn` tools are written to the transcript and artifact but the agent still starts.
 
-This package intentionally does not model the ACP protocol schema. Use it with a protocol package such as `AgentClientProtocol`.
+This package intentionally does not model the ACP protocol schema. It produces the agent's stdio streams and works with any ACP protocol/JSON-RPC package — for example `AgentClientProtocol`, `dotacp`, or `LibAcp`. The samples use `AgentClientProtocol`.
 
 ## Install
 

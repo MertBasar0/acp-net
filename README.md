@@ -23,11 +23,9 @@ The core value is separating these failure classes:
 - protocol failure: ACP/JSON-RPC flow issue
 - agent failure: the agent ran but failed the delegated task
 
-## Relationship To AgentClientProtocol
+## Relationship To ACP Protocol Packages
 
-Acp.Net complements the existing `AgentClientProtocol` package.
-
-`AgentClientProtocol` is useful for protocol types and JSON-RPC client/agent connection behavior. Acp.Net focuses on the practical runtime layer around that protocol:
+Acp.Net does not own ACP protocol types, so it is protocol-package-agnostic: it produces the agent's stdio streams and hands them to whichever ACP protocol/JSON-RPC package you prefer — for example [`AgentClientProtocol`](https://www.nuget.org/packages/AgentClientProtocol), [`dotacp`](https://www.nuget.org/packages/dotacp.protocol), or [`LibAcp`](https://www.nuget.org/packages/LibAcp). Those packages model the protocol and run JSON-RPC over a stream the caller provides; they each leave process launch and platform interop to the consumer. Acp.Net is that layer:
 
 - starting the agent process
 - shaping environment variables and PATH
@@ -36,6 +34,8 @@ Acp.Net complements the existing `AgentClientProtocol` package.
 - recording raw stdio and lifecycle events
 - producing machine-readable run artifacts
 - testing process-boundary behavior with fake agents
+
+The samples use `AgentClientProtocol`, but nothing in `Acp.Net.Process` depends on it. See [docs/ECOSYSTEM.md](docs/ECOSYSTEM.md) for how Acp.Net sits next to the other .NET ACP packages.
 
 ## Repository Layout
 
@@ -93,6 +93,7 @@ Key documents:
 - [OpenClaw Integration Strategy](docs/OPENCLAW_INTEGRATION_STRATEGY.md)
 - [Release Checklist](docs/RELEASE_CHECKLIST.md)
 - [Product Design](docs/product/acp-net-mvp-product-design.md)
+- [Ecosystem Positioning](docs/ECOSYSTEM.md) — how Acp.Net sits next to other .NET ACP packages
 - [Decisions (ADRs)](docs/decisions/)
 
 All core documents have full Turkish versions next to them with a `.tr.md` suffix.
