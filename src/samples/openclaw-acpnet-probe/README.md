@@ -36,9 +36,12 @@ Custom ACP agent command:
 ```bash
 dotnet run --project src/samples/openclaw-acpnet-probe/openclaw-acpnet-probe.csproj -- \
   --agent gemini \
-  --command /path/to/gemini \
+  --command gemini \
   --arg --acp \
   --arg --skip-trust \
+  --arg --approval-mode \
+  --arg plan \
+  --runtime wsl \
   --required-tool git \
   --optional-tool rg
 ```

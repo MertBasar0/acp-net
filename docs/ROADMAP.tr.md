@@ -73,12 +73,19 @@ Hedefler:
 
 ## Faz 4: Gerçek Agent Dogfood
 
+Durum: tamamlandı (2026-06-13). Gerçek Gemini CLI ACP agent'ı ile dogfood yapıldı;
+hem sample hem de probe `--command` yolu uçtan uca tamamlanıyor. Çalıştırma, gerçek
+bir kod hatasını ortaya çıkardı — probe'un `--arg` parser'ı `--acp` gibi bayrak-tipi
+değerleri reddediyordu (düzeltildi) — artı bir ortam sorunu: kurulu Gemini CLI,
+güncel bir sürüm değil eski bir derlemeydi (0.36, `--skip-trust` öncesi). Bunun
+çözümü sample'ı değiştirmek değil, güncel bir Gemini CLI çalıştırmaktır.
+
 Hedefler:
 
-- Gemini CLI ACP modu ile kontrollü gerçek-agent doğrulaması çalıştır
-- transcript'leri opsiyonel yerel kanıt olarak sakla
-- özel `--command` tanılama yolunu doğrula
-- eksik/mevcut araç senaryolarını test et
+- Gemini CLI ACP modu ile kontrollü gerçek-agent doğrulaması çalıştır — tamamlandı
+- transcript'leri opsiyonel yerel kanıt olarak sakla — tamamlandı (gitignored `artifacts/`)
+- özel `--command` tanılama yolunu doğrula — tamamlandı
+- eksik/mevcut araç senaryolarını test et — tamamlandı
 
 ## Şimdilik Açık Hedef-Dışılar
 

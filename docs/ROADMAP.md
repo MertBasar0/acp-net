@@ -73,12 +73,19 @@ Goals:
 
 ## Phase 4: Real Agent Dogfood
 
+Status: done (2026-06-13). Dogfooded against the real Gemini CLI ACP agent; both
+the sample and the probe `--command` path complete end to end. The run surfaced
+one real code bug — the probe's `--arg` parser rejected flag-style values like
+`--acp` (fixed) — plus an environment issue: the installed Gemini CLI was an old
+build (0.36, predating `--skip-trust`) rather than a current release. The fix for
+that is to run a current Gemini CLI, not to change the sample.
+
 Goals:
 
-- run controlled real-agent verification with the Gemini CLI ACP mode
-- preserve transcripts as optional local evidence
-- verify custom `--command` diagnostics path
-- test missing/available tool scenarios
+- run controlled real-agent verification with the Gemini CLI ACP mode — done
+- preserve transcripts as optional local evidence — done (gitignored `artifacts/`)
+- verify custom `--command` diagnostics path — done
+- test missing/available tool scenarios — done
 
 ## Explicit Non-Goals For Now
 

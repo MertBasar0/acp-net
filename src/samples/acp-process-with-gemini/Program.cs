@@ -20,6 +20,10 @@ var transcriptPath = Path.Combine(artifactDir, "gemini-dogfood-transcript.ndjson
 var runner = new AcpProcessRunner(new AcpProcessOptions
 {
     Command = geminiPath,
+    // --skip-trust pre-trusts the workspace so a fresh folder does not trigger a
+    // trust prompt in headless ACP mode; --approval-mode plan keeps it read-only.
+    // --skip-trust was added after Gemini CLI 0.36; very old installs that predate
+    // it reject the flag, so run a current Gemini CLI (latest stable supports it).
     Arguments = ["--acp", "--skip-trust", "--approval-mode", "plan"],
     WorkingDirectory = Directory.GetCurrentDirectory(),
     Runtime = AcpRuntime.Wsl,

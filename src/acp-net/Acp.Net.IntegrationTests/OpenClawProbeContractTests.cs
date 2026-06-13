@@ -33,6 +33,29 @@ public sealed class OpenClawProbeContractTests : IClassFixture<OpenClawProbeCont
     }
 
     [Fact]
+    public async Task FlagStyleArg_IsForwarded_NotRejectedAsConfigError()
+    {
+        // Regression: --arg forwards a token to the agent command verbatim, so a
+        // flag-style value such as --acp must parse rather than fail with exit 64.
+        // Pairing it with a missing --command + --require-command-executable makes
+        // the run fail fast at preflight (exit 2) without launching anything.
+        var artifactDir = PrepareArtifactDir("probe-flag-arg");
+        var run = await RunProbeAsync(
+            [
+                "--command", "definitely-not-a-real-acpnet-command",
+                "--arg", "--acp",
+                "--require-command-executable",
+                "--artifact-dir", artifactDir,
+            ],
+            TimeSpan.FromSeconds(120));
+
+        Assert.Equal(2, run.ExitCode);
+        using var json = ParseSingleJson(run.Stdout);
+        Assert.Equal("EnvironmentFailure", json.RootElement.GetProperty("failureKind").GetString());
+        Assert.NotEqual("ConfigurationFailure", json.RootElement.GetProperty("failureKind").GetString());
+    }
+
+    [Fact]
     public async Task MissingCriticalTool_Exits2_WithEnvironmentFailure()
     {
         var artifactDir = PrepareArtifactDir("probe-env-failure");

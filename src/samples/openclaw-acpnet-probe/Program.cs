@@ -351,7 +351,11 @@ Exit codes:
                     }
                     break;
                 case "--arg":
-                    if (!TryReadValue(args, ref i, out var commandArg, out var argError))
+                    // --arg forwards a single token to the agent command verbatim,
+                    // so it must accept flag-style values like `--acp`. Using the
+                    // normal value reader here would reject any `--`-prefixed agent
+                    // flag and break real-agent invocations.
+                    if (!TryReadRawValue(args, ref i, out var commandArg, out var argError))
                     {
                         return Invalid(argError);
                     }
@@ -474,6 +478,23 @@ Exit codes:
     static bool TryReadValue(IReadOnlyList<string> args, ref int index, out string value, out string error)
     {
         if (index + 1 >= args.Count || args[index + 1].StartsWith("--", StringComparison.Ordinal))
+        {
+            value = string.Empty;
+            error = $"{args[index]} requires a value.";
+            return false;
+        }
+
+        value = args[++index];
+        error = string.Empty;
+        return true;
+    }
+
+    // Reads the next token verbatim without rejecting `--`-prefixed values. Only
+    // for options like --arg that forward a token to the agent command, where a
+    // leading `--` is a normal agent flag rather than the next probe option.
+    static bool TryReadRawValue(IReadOnlyList<string> args, ref int index, out string value, out string error)
+    {
+        if (index + 1 >= args.Count)
         {
             value = string.Empty;
             error = $"{args[index]} requires a value.";
