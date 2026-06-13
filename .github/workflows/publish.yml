@@ -30,15 +30,26 @@ jobs:
             10.0.x
             8.0.x
 
-      - name: Verify package IDs are still unpublished
+      - name: Verify target version is not already published
         run: |
           set -euo pipefail
+          version=$(grep -oPm1 '(?<=<Version>)[^<]+' src/acp-net/Acp.Net.Process/Acp.Net.Process.csproj)
+          echo "Publishing version: ${version}"
           for id in acp.net.process acp.net.testing; do
             status=$(curl -sS -o /dev/null -w "%{http_code}" "https://api.nuget.org/v3-flatcontainer/${id}/index.json")
-            if [ "$status" != "404" ]; then
-              echo "Package ID ${id} returned HTTP ${status}; refusing to publish."
+            if [ "$status" = "404" ]; then
+              echo "${id}: not yet published (first release)."
+              continue
+            fi
+            if [ "$status" != "200" ]; then
+              echo "${id}: unexpected HTTP ${status} from NuGet; refusing to publish."
               exit 1
             fi
+            if curl -sS "https://api.nuget.org/v3-flatcontainer/${id}/index.json" | grep -q "\"${version}\""; then
+              echo "${id} ${version} is already published; refusing to republish the same version."
+              exit 1
+            fi
+            echo "${id}: ${version} is new."
           done
 
       - name: Test

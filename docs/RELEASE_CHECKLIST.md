@@ -58,14 +58,9 @@ On Windows + WSL setups see the path note in [DEVELOPMENT_GUIDE.md](DEVELOPMENT_
 - `SymbolPackageFormat`: `snupkg`
 - Published packages: `Acp.Net.Process 0.1.0-alpha.1`, `Acp.Net.Testing 0.1.0-alpha.1` (2026-06-11)
 
-## Package ID Check
+## Version Check
 
-Checked on 2026-06-10 through the NuGet flat-container API:
-
-- `https://api.nuget.org/v3-flatcontainer/acp.net.process/index.json`: 404
-- `https://api.nuget.org/v3-flatcontainer/acp.net.testing/index.json`: 404
-
-Interpretation: these package IDs were not published at check time. Recheck immediately before `dotnet nuget push`.
+The package IDs are now established on NuGet, so the publish workflow no longer requires a 404. Instead it reads `<Version>` from `Acp.Net.Process.csproj` and refuses to publish if that exact version is already present in the flat-container version list. This prevents re-publishing an existing version while allowing new ones. Always bump `<Version>` in both csproj files before triggering a release.
 
 ## GitHub Actions Publishing
 

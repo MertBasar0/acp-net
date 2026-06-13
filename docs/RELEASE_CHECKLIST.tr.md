@@ -58,14 +58,9 @@ Windows + WSL kurulumları için [DEVELOPMENT_GUIDE.tr.md](DEVELOPMENT_GUIDE.tr.
 - `SymbolPackageFormat`: `snupkg`
 - Yayınlanmış paketler: `Acp.Net.Process 0.1.0-alpha.1`, `Acp.Net.Testing 0.1.0-alpha.1` (2026-06-11)
 
-## Paket ID Kontrolü
+## Sürüm Kontrolü
 
-2026-06-10 tarihinde NuGet flat-container API üzerinden kontrol edildi:
-
-- `https://api.nuget.org/v3-flatcontainer/acp.net.process/index.json`: 404
-- `https://api.nuget.org/v3-flatcontainer/acp.net.testing/index.json`: 404
-
-Yorum: kontrol anında bu paket ID'leri yayınlanmamıştı. `dotnet nuget push`'tan hemen önce yeniden kontrol edin.
+Paket ID'leri artık NuGet'te mevcut olduğu için yayın workflow'u artık `404` beklemiyor. Bunun yerine `Acp.Net.Process.csproj`'tan `<Version>`'ı okuyor ve o sürüm flat-container sürüm listesinde zaten varsa yayını reddediyor. Bu, mevcut bir sürümü yeniden basmayı engellerken yeni sürümlere izin verir. Bir sürüm tetiklemeden önce her iki csproj dosyasındaki `<Version>`'ı daima yükseltin.
 
 ## GitHub Actions İle Yayın
 
