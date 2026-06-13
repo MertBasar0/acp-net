@@ -94,6 +94,7 @@ Temel dokümanlar:
 - [Sürüm Kontrol Listesi](docs/RELEASE_CHECKLIST.tr.md)
 - [Ürün Tasarımı](docs/product/acp-net-mvp-product-design.tr.md)
 - [Ekosistem Konumlandırması](docs/ECOSYSTEM.tr.md) — Acp.Net'in diğer .NET ACP paketlerinin yanındaki yeri
+- [OpenClaw Entegrasyonu (referans)](docs/integrations/openclaw.tr.md) — tanılama probe'unu bir OpenClaw health check'inden çağırma
 - [Kararlar (ADR'ler)](docs/decisions/)
 
 Tüm çekirdek dokümanların İngilizce ana sürümleri aynı klasörde, `.tr.md` son eki olmadan bulunur.

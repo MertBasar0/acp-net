@@ -66,6 +66,8 @@ If an OpenClaw PR is ever proposed, it should be small and integration-point ori
 
 ## Current Reference Artifacts
 
+The reference integration guide that ties these together: [integrations/openclaw.md](integrations/openclaw.md).
+
 In this repository:
 
 - `src/samples/openclaw-acpnet-probe/` — stabilized diagnostic command probe

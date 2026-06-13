@@ -61,11 +61,13 @@ Do not create `Acp.Net.Diagnostics` in this phase.
 
 ## Phase 3: Reference Integrations
 
+Status: reference guide written ([docs/integrations/openclaw.md](integrations/openclaw.md)). The remaining goals are ongoing/conditional.
+
 Goals:
 
-- write `docs/integrations/openclaw.md`
+- write `docs/integrations/openclaw.md` — done
 - keep OpenClaw integration as third-party/reference sample
-- document how an OpenClaw health check could call the diagnostic command
+- document how an OpenClaw health check could call the diagnostic command — done
 - avoid runtime backend replacement
 - prepare maintainer-friendly proposal only after package is stable
 

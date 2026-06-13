@@ -94,6 +94,7 @@ Key documents:
 - [Release Checklist](docs/RELEASE_CHECKLIST.md)
 - [Product Design](docs/product/acp-net-mvp-product-design.md)
 - [Ecosystem Positioning](docs/ECOSYSTEM.md) — how Acp.Net sits next to other .NET ACP packages
+- [OpenClaw Integration (reference)](docs/integrations/openclaw.md) — calling the diagnostic probe from an OpenClaw health check
 - [Decisions (ADRs)](docs/decisions/)
 
 All core documents have full Turkish versions next to them with a `.tr.md` suffix.

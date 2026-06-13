@@ -66,6 +66,8 @@ Bir gün bir OpenClaw PR'ı önerilirse, küçük ve entegrasyon-noktası odakl�
 
 ## Güncel Referans Artifact'leri
 
+Bunları birbirine bağlayan referans entegrasyon rehberi: [integrations/openclaw.tr.md](integrations/openclaw.tr.md).
+
 Bu depoda:
 
 - `src/samples/openclaw-acpnet-probe/` — stabilize edilmiş tanılama komut probe'u

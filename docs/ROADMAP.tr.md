@@ -61,11 +61,13 @@ Bu fazda `Acp.Net.Diagnostics` paketi oluşturma.
 
 ## Faz 3: Referans Entegrasyonlar
 
+Durum: referans rehberi yazıldı ([docs/integrations/openclaw.tr.md](integrations/openclaw.tr.md)). Kalan hedefler süregelen/koşullu.
+
 Hedefler:
 
-- `docs/integrations/openclaw.md` yaz
+- `docs/integrations/openclaw.md` yaz — tamamlandı
 - OpenClaw entegrasyonunu üçüncü taraf/referans sample olarak tut
-- bir OpenClaw health check'inin tanılama komutunu nasıl çağırabileceğini dokümante et
+- bir OpenClaw health check'inin tanılama komutunu nasıl çağırabileceğini dokümante et — tamamlandı
 - runtime backend değişiminden kaçın
 - ancak paket stabil olduktan sonra bakımcı-dostu öneri hazırla
 
