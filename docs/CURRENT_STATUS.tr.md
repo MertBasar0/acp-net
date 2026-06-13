@@ -90,7 +90,7 @@ Windows + WSL kurulumlarında, WSL path'lerinin Windows `dotnet.exe`'ye nasıl v
 
 Sembol paketleri (`.snupkg`) birlikte gönderildi. Paket metadata'sı doğru depo/proje URL'sini ve Apache-2.0 lisans ifadesini taşıyor.
 
-`0.1.0-alpha.2` hazırlanıyor. Taze-tüketici testinde ortaya çıkan bir Windows tuzağını düzeltir: `python3` gibi düz bir komut, bir Microsoft Store execution-alias stub'ına çözülüyor; preflight bunu "bulundu" sayıyor, runner başlatıyor ve sessizce kilitleniyordu. Runtime çözümleyici artık böyle bir komutu WSL'ye yönlendiriyor ve preflight stub'ı "eksik" olarak raporluyor.
+`0.1.0-alpha.2`, 2026-06-13 tarihinde yayınlandı. Taze-tüketici testinde ortaya çıkan bir Windows tuzağını düzeltir: `python3` gibi düz bir komut, bir Microsoft Store execution-alias stub'ına çözülüyor; preflight bunu "bulundu" sayıyor, runner başlatıyor ve sessizce kilitleniyordu. Runtime çözümleyici artık böyle bir komutu WSL'ye yönlendiriyor ve preflight stub'ı "eksik" olarak raporluyor.
 
 Gelecek sürümler aynı elle tetiklenen workflow üzerinden gider; kapı listesi için [RELEASE_CHECKLIST.tr.md](RELEASE_CHECKLIST.tr.md) dosyasına bakın.
 

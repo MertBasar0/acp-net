@@ -90,7 +90,7 @@ First alpha packages were published on 2026-06-11 through the `publish.yml` work
 
 Symbol packages (`.snupkg`) were pushed alongside. Package metadata carries the correct repository/project URL and the Apache-2.0 license expression.
 
-`0.1.0-alpha.2` is in preparation. It fixes a Windows trap surfaced by a fresh-consumer test: a bare command such as `python3` resolves to a Microsoft Store execution-alias stub, which preflight reported as found and the runner then launched, hanging silently. The runtime resolver now routes such a command through WSL, and preflight reports the stub as missing instead.
+`0.1.0-alpha.2` was published on 2026-06-13. It fixes a Windows trap surfaced by a fresh-consumer test: a bare command such as `python3` resolves to a Microsoft Store execution-alias stub, which preflight reported as found and the runner then launched, hanging silently. The runtime resolver now routes such a command through WSL, and preflight reports the stub as missing instead.
 
 Future releases go through the same manually triggered workflow; see [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) for the gate list.
 
