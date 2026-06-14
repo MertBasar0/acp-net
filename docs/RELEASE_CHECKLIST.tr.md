@@ -26,7 +26,7 @@ Depo yerel alpha paketleri üretebiliyor ve Apache-2.0 seçildi. Herkese açık 
 - Üretilen paketler yerelde incelendi.
 - Sembol paketleri yerelde incelendi.
 - CI geçiyor.
-- Depo görünürlüğü sürüm fazı için bilinçli olarak ayarlandı.
+- Depo görünürlüğü sürüm fazı için bilinçli olarak ayarlandı. (2026-06-15'ten beri public.)
 
 ## Doğrulama Komutları
 

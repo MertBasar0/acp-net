@@ -26,7 +26,7 @@ The repository can produce local alpha packages and Apache-2.0 is selected. Publ
 - Generated packages inspected locally.
 - Symbol packages inspected locally.
 - CI passes.
-- Repository visibility intentionally set for the release phase.
+- Repository visibility intentionally set for the release phase. (Public since 2026-06-15.)
 
 ## Verification Commands
 
