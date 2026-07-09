@@ -2,7 +2,7 @@
 
 > 🇹🇷 Türkçe sürüm: [CURRENT_STATUS.tr.md](CURRENT_STATUS.tr.md)
 
-Last updated: 2026-06-10
+Last updated: 2026-07-09
 
 This document is the single source of truth for project state. Other documents link here instead of repeating status information.
 
@@ -102,6 +102,10 @@ Future releases go through the same manually triggered workflow; see [RELEASE_CH
 4. Tool preflight matters; a missing `rg` was detected before agent execution.
 5. OpenClaw already has ACPX as runtime backend, so Acp.Net should not replace it.
 6. OpenClaw integration should stay reference/diagnostic unless a formal proposal is prepared.
+
+## Training Factory Direction
+
+Training Factory (the related RL training project) was repositioned on 2026-07-09: it is an agentic training-ops dogfood field on top of Isaac Lab and OSMO-style job specs, with OpenClaw as the commanding agent and Acp.Net at the process boundary. It is explicitly not a horizontal orchestrator product. The decision, spike definition, and success criteria live in [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.md); the spike itself is Phase 5 in the [roadmap](ROADMAP.md) and is gated on local GPU availability.
 
 ## Current Risks
 

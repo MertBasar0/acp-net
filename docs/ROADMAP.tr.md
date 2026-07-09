@@ -2,7 +2,7 @@
 
 > 🇬🇧 English version: [ROADMAP.md](ROADMAP.md)
 
-Son güncelleme: 2026-06-10
+Son güncelleme: 2026-07-09
 
 ## Ürün Hedefi
 
@@ -87,6 +87,20 @@ Hedefler:
 - özel `--command` tanılama yolunu doğrula — tamamlandı
 - eksik/mevcut araç senaryolarını test et — tamamlandı
 
+## Faz 5: Training Factory Spike'ı (Isaac Lab)
+
+Durum: planlandı, yerel GPU erişilebilirliğine bağlı. Yön [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.tr.md) ile belirlendi.
+
+Hedefler:
+
+- bir eğitim işini makine-okunur bir tanımla ifade et (YAML/JSON, OSMO tarzı)
+- "eğitimi başlat → eval koş → run artifact'i raporla" döngüsünü tek OpenClaw komutundan uçtan uca çalıştır
+- .NET'in devrede olduğu her yerde başlatma/preflight/tanılamayı Acp.Net üzerinden geçir
+- başarısız her koşuyu Acp.Net hata sınıflarına ayrıştır
+- tekrarlanabilirliği kanıtla: aynı komut iki kez karşılaştırılabilir run artifact üretmeli
+
+Bu fazda yeni bir orkestratör kod tabanı başlatma.
+
 ## Şimdilik Açık Hedef-Dışılar
 
 - tam ACP protokol SDK'sının yerine geçmek
@@ -94,3 +108,4 @@ Hedefler:
 - ACPX'in yerine geçmek
 - UI/dashboard
 - sağlayıcı pazaryeri
+- NVIDIA OSMO ile yarışan yatay bir eğitim orkestratörü (bkz. [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.tr.md))

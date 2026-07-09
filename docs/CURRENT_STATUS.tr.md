@@ -2,7 +2,7 @@
 
 > 🇬🇧 English version: [CURRENT_STATUS.md](CURRENT_STATUS.md)
 
-Son güncelleme: 2026-06-10
+Son güncelleme: 2026-07-09
 
 Bu doküman, proje durumu için tek doğruluk kaynağıdır. Diğer dokümanlar durum bilgisini tekrarlamak yerine buraya bağlantı verir.
 
@@ -102,6 +102,10 @@ Gelecek sürümler aynı elle tetiklenen workflow üzerinden gider; kapı listes
 4. Araç preflight'ı önemlidir; eksik `rg`, agent çalışmadan önce tespit edildi.
 5. OpenClaw'da runtime backend olarak zaten ACPX var; Acp.Net onun yerine geçmemeli.
 6. Resmî bir öneri hazırlanmadıkça OpenClaw entegrasyonu referans/tanılama düzeyinde kalmalı.
+
+## Training Factory Yönü
+
+Training Factory (ilişkili RL eğitim projesi) 2026-07-09 tarihinde yeniden konumlandırıldı: Isaac Lab ve OSMO tarzı iş tanımlarının üstünde, komut veren agent olarak OpenClaw ve process sınırında Acp.Net ile çalışan bir agentic training-ops dogfood alanıdır. Açıkça yatay bir orkestratör ürünü değildir. Karar, spike tanımı ve başarı ölçütleri [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.tr.md) dosyasında; spike'ın kendisi [yol haritasında](ROADMAP.tr.md) Faz 5 olarak yer alıyor ve yerel GPU erişilebilirliğine bağlı.
 
 ## Güncel Riskler
 

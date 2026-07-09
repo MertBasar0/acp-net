@@ -2,7 +2,7 @@
 
 > 🇹🇷 Türkçe sürüm: [ROADMAP.tr.md](ROADMAP.tr.md)
 
-Last updated: 2026-06-10
+Last updated: 2026-07-09
 
 ## Product Goal
 
@@ -87,6 +87,20 @@ Goals:
 - verify custom `--command` diagnostics path — done
 - test missing/available tool scenarios — done
 
+## Phase 5: Training Factory Spike (Isaac Lab)
+
+Status: planned, gated on local GPU availability. Direction set in [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.md).
+
+Goals:
+
+- express one training job as a machine-readable spec (YAML/JSON, OSMO-style)
+- run "start training → run eval → report run artifact" end to end from one OpenClaw command
+- route launch/preflight/diagnostics through Acp.Net wherever .NET is in the loop
+- classify any failed run into the Acp.Net failure classes
+- prove repeatability: the same command twice yields comparable run artifacts
+
+Do not start a new orchestrator codebase in this phase.
+
 ## Explicit Non-Goals For Now
 
 - full ACP protocol SDK replacement
@@ -94,3 +108,4 @@ Goals:
 - replacing ACPX
 - UI/dashboard
 - provider marketplace
+- a horizontal training orchestrator competing with NVIDIA OSMO (see [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.md))
