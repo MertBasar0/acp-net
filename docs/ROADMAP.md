@@ -89,17 +89,20 @@ Goals:
 
 ## Phase 5: Training Factory Spike (Isaac Lab)
 
-Status: planned, gated on local GPU availability. Direction set in [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.md).
+Status: planned, gated on local GPU availability. Direction set in [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.md); architecture split in [ADR-0005](decisions/ADR-0005-two-boundary-architecture.md).
+
+This phase is the acp-net-side projection of the spike. The worker itself — the Training-Ops Agent, an A2A server owning the goal loop — lives in its own repository and consumes `Acp.Net.Process` at the process boundary. What lands here is whatever the dogfood surfaces as library gaps (e.g. long-running process monitoring, artifact comparison helpers).
 
 Goals:
 
 - express one training job as a machine-readable spec (YAML/JSON, OSMO-style)
-- run "start training → run eval → report run artifact" end to end from one OpenClaw command
+- run "start training → run eval → report run artifact" end to end from one OpenClaw command, delivered over A2A to the worker
 - route launch/preflight/diagnostics through Acp.Net wherever .NET is in the loop
 - classify any failed run into the Acp.Net failure classes
 - prove repeatability: the same command twice yields comparable run artifacts
+- record which Acp.Net gaps the dogfood surfaces, as issues or ADRs in this repo
 
-Do not start a new orchestrator codebase in this phase.
+Do not start a new orchestrator codebase in this phase. Do not host the worker application in this repository.
 
 ## Explicit Non-Goals For Now
 

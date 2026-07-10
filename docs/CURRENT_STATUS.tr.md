@@ -107,6 +107,8 @@ Gelecek sürümler aynı elle tetiklenen workflow üzerinden gider; kapı listes
 
 Training Factory (ilişkili RL eğitim projesi) 2026-07-09 tarihinde yeniden konumlandırıldı: Isaac Lab ve OSMO tarzı iş tanımlarının üstünde, komut veren agent olarak OpenClaw ve process sınırında Acp.Net ile çalışan bir agentic training-ops dogfood alanıdır. Açıkça yatay bir orkestratör ürünü değildir. Karar, spike tanımı ve başarı ölçütleri [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.tr.md) dosyasında; spike'ın kendisi [yol haritasında](ROADMAP.tr.md) Faz 5 olarak yer alıyor ve yerel GPU erişilebilirliğine bağlı.
 
+[ADR-0005](decisions/ADR-0005-two-boundary-architecture.tr.md) (2026-07-10) mimariyi sabitledi: OpenClaw ana modeli worker'a A2A üzerinden ulaşır (kuzey sınır, resmî A2A .NET SDK); worker — Training Factory'nin gerçek formu olan Training-Ops Agent — kendi deposunda yaşayan ayrı ve ince bir uygulamadır; içinde process'ler ve yerel code agent'lar Acp.Net/ACP sınırından geçer (güney). Bu depo bir paket ailesi olarak kalır; ne worker'ı ne de protokol mekaniğini barındırır.
+
 ## Güncel Riskler
 
 - API hâlâ alpha seviyesinde.

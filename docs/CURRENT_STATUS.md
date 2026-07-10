@@ -107,6 +107,8 @@ Future releases go through the same manually triggered workflow; see [RELEASE_CH
 
 Training Factory (the related RL training project) was repositioned on 2026-07-09: it is an agentic training-ops dogfood field on top of Isaac Lab and OSMO-style job specs, with OpenClaw as the commanding agent and Acp.Net at the process boundary. It is explicitly not a horizontal orchestrator product. The decision, spike definition, and success criteria live in [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.md); the spike itself is Phase 5 in the [roadmap](ROADMAP.md) and is gated on local GPU availability.
 
+[ADR-0005](decisions/ADR-0005-two-boundary-architecture.md) (2026-07-10) fixed the architecture: the OpenClaw main model reaches the worker over A2A (north boundary, official A2A .NET SDK); the worker — the Training-Ops Agent, the real form of Training Factory — is a separate thin application in its own repository; inside it, processes and local code agents cross the Acp.Net/ACP boundary (south). This repository remains a package family and hosts neither the worker nor any protocol machinery.
+
 ## Current Risks
 
 - API is still alpha-level.

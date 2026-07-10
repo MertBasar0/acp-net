@@ -89,17 +89,20 @@ Hedefler:
 
 ## Faz 5: Training Factory Spike'ı (Isaac Lab)
 
-Durum: planlandı, yerel GPU erişilebilirliğine bağlı. Yön [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.tr.md) ile belirlendi.
+Durum: planlandı, yerel GPU erişilebilirliğine bağlı. Yön [ADR-0004](decisions/ADR-0004-training-factory-agentic-training-ops.tr.md) ile belirlendi; mimari ayrım [ADR-0005](decisions/ADR-0005-two-boundary-architecture.tr.md) ile netleşti.
+
+Bu faz, spike'ın acp-net tarafındaki izdüşümüdür. Worker'ın kendisi — hedef döngüsünün sahibi olan, A2A server olarak çalışan Training-Ops Agent — kendi deposunda yaşar ve process sınırında `Acp.Net.Process` tüketir. Buraya düşecek olan, dogfood'un ortaya çıkardığı kütüphane eksikleridir (ör. uzun süren process izleme, artifact karşılaştırma yardımcıları).
 
 Hedefler:
 
 - bir eğitim işini makine-okunur bir tanımla ifade et (YAML/JSON, OSMO tarzı)
-- "eğitimi başlat → eval koş → run artifact'i raporla" döngüsünü tek OpenClaw komutundan uçtan uca çalıştır
+- "eğitimi başlat → eval koş → run artifact'i raporla" döngüsünü tek OpenClaw komutundan, A2A üzerinden worker'a iletilerek uçtan uca çalıştır
 - .NET'in devrede olduğu her yerde başlatma/preflight/tanılamayı Acp.Net üzerinden geçir
 - başarısız her koşuyu Acp.Net hata sınıflarına ayrıştır
 - tekrarlanabilirliği kanıtla: aynı komut iki kez karşılaştırılabilir run artifact üretmeli
+- dogfood'un ortaya çıkardığı Acp.Net eksiklerini bu depoda issue veya ADR olarak kaydet
 
-Bu fazda yeni bir orkestratör kod tabanı başlatma.
+Bu fazda yeni bir orkestratör kod tabanı başlatma. Worker uygulamasını bu depoda barındırma.
 
 ## Şimdilik Açık Hedef-Dışılar
 
