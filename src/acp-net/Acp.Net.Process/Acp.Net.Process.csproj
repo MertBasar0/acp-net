@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>0.1.0-alpha.2: Windows fix — a bare command such as python3 that resolves only to a Windows Store execution-alias stub no longer hangs; AcpRuntime.Auto routes it through WSL and preflight reports the stub as missing. Also cleans up an already-started process when StartAsync is cancelled.</PackageReleaseNotes>
+    <PackageReleaseNotes>0.1.0: First stable release. Breaking change from the alpha line: RequiredTools was merged into RequiredExecutables, which is now IReadOnlyList of AcpRequiredExecutable. Bare strings still compile via the implicit conversion and keep Warn semantics; use AcpRequiredExecutable.Throw(name) for fail-fast entries.</PackageReleaseNotes>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

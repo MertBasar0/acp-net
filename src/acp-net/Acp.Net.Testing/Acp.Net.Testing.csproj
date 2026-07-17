@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>0.1.0-alpha.2: version aligned with Acp.Net.Process; no API changes.</PackageReleaseNotes>
+    <PackageReleaseNotes>0.1.0: First stable release; version aligned with Acp.Net.Process (see its notes for the RequiredExecutables breaking change). No API changes in this package.</PackageReleaseNotes>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
