@@ -56,7 +56,7 @@ On Windows + WSL setups see the path note in [DEVELOPMENT_GUIDE.md](DEVELOPMENT_
 - `RepositoryType`: `git`
 - `PackageLicenseExpression`: `Apache-2.0`
 - `SymbolPackageFormat`: `snupkg`
-- Published packages: `Acp.Net.Process` / `Acp.Net.Testing` `0.1.0-alpha.1` (2026-06-11), `0.1.0-alpha.2` (2026-06-13). `0.1.0` staged locally (API: `RequiredTools` merged into `RequiredExecutables`; awaiting publish decision).
+- Published packages: `Acp.Net.Process` / `Acp.Net.Testing` `0.1.0-alpha.1` (2026-06-11), `0.1.0-alpha.2` (2026-06-13), `0.1.0` (2026-07-18, first stable; API: `RequiredTools` merged into `RequiredExecutables`).
 
 ## Version Check
 

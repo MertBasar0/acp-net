@@ -56,7 +56,7 @@ Windows + WSL kurulumları için [DEVELOPMENT_GUIDE.tr.md](DEVELOPMENT_GUIDE.tr.
 - `RepositoryType`: `git`
 - `PackageLicenseExpression`: `Apache-2.0`
 - `SymbolPackageFormat`: `snupkg`
-- Yayınlanmış paketler: `Acp.Net.Process` / `Acp.Net.Testing` `0.1.0-alpha.1` (2026-06-11), `0.1.0-alpha.2` (2026-06-13). `0.1.0` yerelde hazırlandı (API: `RequiredTools`, `RequiredExecutables` içine birleştirildi; yayın kararı bekleniyor).
+- Yayınlanmış paketler: `Acp.Net.Process` / `Acp.Net.Testing` `0.1.0-alpha.1` (2026-06-11), `0.1.0-alpha.2` (2026-06-13), `0.1.0` (2026-07-18, ilk kararlı sürüm; API: `RequiredTools`, `RequiredExecutables` içine birleştirildi).
 
 ## Sürüm Kontrolü
 
