@@ -2,7 +2,7 @@
 
 > 🇬🇧 English version: [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)
 
-Son güncelleme: 2026-06-10
+Son güncelleme: 2026-07-17
 
 Herhangi bir alpha NuGet yayınından önce bunu kullanın. Güncel proje durumu için bkz. [CURRENT_STATUS.tr.md](CURRENT_STATUS.tr.md).
 
@@ -56,7 +56,7 @@ Windows + WSL kurulumları için [DEVELOPMENT_GUIDE.tr.md](DEVELOPMENT_GUIDE.tr.
 - `RepositoryType`: `git`
 - `PackageLicenseExpression`: `Apache-2.0`
 - `SymbolPackageFormat`: `snupkg`
-- Yayınlanmış paketler: `Acp.Net.Process` / `Acp.Net.Testing` `0.1.0-alpha.1` (2026-06-11), `0.1.0-alpha.2` (2026-06-13)
+- Yayınlanmış paketler: `Acp.Net.Process` / `Acp.Net.Testing` `0.1.0-alpha.1` (2026-06-11), `0.1.0-alpha.2` (2026-06-13). `0.1.0` yerelde hazırlandı (API: `RequiredTools`, `RequiredExecutables` içine birleştirildi; yayın kararı bekleniyor).
 
 ## Sürüm Kontrolü
 

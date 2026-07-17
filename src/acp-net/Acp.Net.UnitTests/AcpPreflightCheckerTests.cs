@@ -49,7 +49,7 @@ public sealed class AcpPreflightCheckerTests
         {
             Command = "python3",
             Runtime = AcpRuntime.Native,
-            RequiredTools = [AcpRequiredExecutable.Throw("definitely-not-a-real-acp-required-tool")]
+            RequiredExecutables = [AcpRequiredExecutable.Throw("definitely-not-a-real-acp-required-tool")]
         };
         var resolved = AcpRuntimeResolver.Resolve(options);
 

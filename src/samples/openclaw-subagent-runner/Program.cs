@@ -19,7 +19,7 @@ var runner = new AcpProcessRunner(new AcpProcessOptions
     Runtime = AcpRuntime.Auto,
     TranscriptPath = transcriptPath,
     RunArtifactPath = runArtifactPath,
-    RequiredTools =
+    RequiredExecutables =
     [
         AcpRequiredExecutable.Throw("python3"),
         AcpRequiredExecutable.Warn("rg")

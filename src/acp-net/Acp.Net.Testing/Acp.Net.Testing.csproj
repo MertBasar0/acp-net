@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Acp.Net.Testing</PackageId>
-    <Version>0.1.0-alpha.2</Version>
+    <Version>0.1.0</Version>
     <Authors>Mert Basar</Authors>
     <Copyright>Copyright 2026 Mert Basar</Copyright>
     <Description>Fake ACP agent and transcript assertions for .NET ACP integration tests.</Description>

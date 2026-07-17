@@ -24,7 +24,5 @@ public sealed record AcpProcessOptions
 
     public IReadOnlyList<string> AdditionalPathEntries { get; init; } = [];
 
-    public IReadOnlyList<string> RequiredExecutables { get; init; } = [];
-
-    public IReadOnlyList<AcpRequiredExecutable> RequiredTools { get; init; } = [];
+    public IReadOnlyList<AcpRequiredExecutable> RequiredExecutables { get; init; } = [];
 }

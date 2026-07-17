@@ -24,7 +24,7 @@ public sealed class AcpProcessIntegrationTests
             Runtime = AcpRuntime.Auto,
             TranscriptPath = transcriptPath,
             RunArtifactPath = runArtifactPath,
-            RequiredTools = [AcpRequiredExecutable.Throw("python3")],
+            RequiredExecutables = [AcpRequiredExecutable.Throw("python3")],
             Shutdown = AcpShutdownPolicy.GracefulThenKill(TimeSpan.FromMilliseconds(500))
         });
 
@@ -102,7 +102,7 @@ public sealed class AcpProcessIntegrationTests
             Runtime = AcpRuntime.Native,
             TranscriptPath = transcriptPath,
             RunArtifactPath = runArtifactPath,
-            RequiredTools = [AcpRequiredExecutable.Throw("definitely-not-a-real-acp-required-tool")]
+            RequiredExecutables = [AcpRequiredExecutable.Throw("definitely-not-a-real-acp-required-tool")]
         });
 
         var exception = await Assert.ThrowsAsync<AcpPreflightException>(() => runner.StartAsync());

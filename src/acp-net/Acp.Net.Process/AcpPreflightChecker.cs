@@ -27,8 +27,6 @@ internal static class AcpPreflightChecker
     static IReadOnlyList<AcpRequiredExecutable> GetRequirements(AcpProcessOptions options)
     {
         return options.RequiredExecutables
-            .Select(AcpRequiredExecutable.Warn)
-            .Concat(options.RequiredTools)
             .Where(requirement => !string.IsNullOrWhiteSpace(requirement.Name))
             .ToArray();
     }

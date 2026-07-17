@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Acp.Net.Process</PackageId>
-    <Version>0.1.0-alpha.2</Version>
+    <Version>0.1.0</Version>
     <Authors>Mert Basar</Authors>
     <Copyright>Copyright 2026 Mert Basar</Copyright>
     <Description>Process, runtime bridge, shutdown, and transcript helpers for .NET ACP integrations.</Description>

@@ -2,7 +2,7 @@
 
 > 🇬🇧 English version: [CURRENT_STATUS.md](CURRENT_STATUS.md)
 
-Son güncelleme: 2026-07-09
+Son güncelleme: 2026-07-17
 
 Bu doküman, proje durumu için tek doğruluk kaynağıdır. Diğer dokümanlar durum bilgisini tekrarlamak yerine buraya bağlantı verir.
 

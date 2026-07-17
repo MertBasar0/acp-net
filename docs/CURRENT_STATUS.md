@@ -2,7 +2,7 @@
 
 > 🇹🇷 Türkçe sürüm: [CURRENT_STATUS.tr.md](CURRENT_STATUS.tr.md)
 
-Last updated: 2026-07-09
+Last updated: 2026-07-17
 
 This document is the single source of truth for project state. Other documents link here instead of repeating status information.
 

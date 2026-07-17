@@ -56,7 +56,7 @@ try
         WslDistribution = options.WslDistribution,
         TranscriptPath = transcriptPath,
         RunArtifactPath = runArtifactPath,
-        RequiredTools = requiredTools,
+        RequiredExecutables = requiredTools,
         Shutdown = AcpShutdownPolicy.GracefulThenKill(options.ShutdownGracePeriod)
     });
 
