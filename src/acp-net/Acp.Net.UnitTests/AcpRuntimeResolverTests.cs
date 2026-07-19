@@ -53,6 +53,48 @@ public sealed class AcpRuntimeResolverTests
     }
 
     [Fact]
+    public void Resolve_ForcedWsl_ShellHalfUsesPosixQuoting()
+    {
+        // Regression for issue #1: everything after `--` reaches the default POSIX
+        // shell verbatim, so metacharacter payloads need single-quote quoting there —
+        // Windows-style double quotes belong only to the wsl.exe flag half.
+        var resolved = AcpRuntimeResolver.Resolve(new AcpProcessOptions
+        {
+            Command = "python3",
+            Arguments = ["-c", "print(94.5)"],
+            Runtime = AcpRuntime.Wsl,
+            WslDistribution = "Ubuntu"
+        });
+
+        Assert.Equal("-d Ubuntu -- python3 -c 'print(94.5)'", resolved.StartInfo.Arguments);
+    }
+
+    [Fact]
+    public void Resolve_ForcedWsl_PayloadWithSingleQuotesIsEscaped()
+    {
+        var resolved = AcpRuntimeResolver.Resolve(new AcpProcessOptions
+        {
+            Command = "python3",
+            Arguments = ["-c", "print('noise'); print(92.5)"],
+            Runtime = AcpRuntime.Wsl
+        });
+
+        Assert.Equal(@"-- python3 -c 'print('\''noise'\''); print(92.5)'", resolved.StartInfo.Arguments);
+    }
+
+    [Theory]
+    [InlineData("print(94.5)", "'print(94.5)'")]
+    [InlineData("import sys; sys.exit(3)", "'import sys; sys.exit(3)'")]
+    [InlineData("plain-safe_word.txt", "plain-safe_word.txt")]
+    [InlineData("/home/user/agent.py", "/home/user/agent.py")]
+    [InlineData("", "''")]
+    [InlineData("it's", @"'it'\''s'")]
+    public void PosixQuote_ProtectsShellMetacharacters(string value, string expected)
+    {
+        Assert.Equal(expected, AcpRuntimeResolver.PosixQuote(value));
+    }
+
+    [Fact]
     public void Resolve_Environment_CanSetAndRemoveVariables()
     {
         var resolved = AcpRuntimeResolver.Resolve(new AcpProcessOptions

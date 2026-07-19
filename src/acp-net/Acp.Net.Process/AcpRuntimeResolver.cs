@@ -72,27 +72,35 @@ internal static class AcpRuntimeResolver
 
     static AcpProcessStartInfo BuildWslStartInfo(AcpProcessOptions options)
     {
-        var args = new List<string>();
+        var wslFlags = new List<string>();
         if (!string.IsNullOrWhiteSpace(options.WslDistribution))
         {
-            args.Add("-d");
-            args.Add(options.WslDistribution);
+            wslFlags.Add("-d");
+            wslFlags.Add(options.WslDistribution);
         }
 
         if (!string.IsNullOrWhiteSpace(options.WorkingDirectory))
         {
-            args.Add("--cd");
-            args.Add(AcpPathMapper.ToWslPath(options.WorkingDirectory));
+            wslFlags.Add("--cd");
+            wslFlags.Add(AcpPathMapper.ToWslPath(options.WorkingDirectory));
         }
 
-        args.Add("--");
-        args.Add(options.Command);
-        args.AddRange(options.Arguments.Select(AcpPathMapper.ToWslPath));
+        // wsl.exe parses its own flags from Windows argv, but everything after `--`
+        // is handed verbatim to the default POSIX shell (`bash -c`). The two halves
+        // therefore need different quoting: Windows rules before `--`, POSIX rules
+        // after. Windows-style double quotes after `--` reach the shell as literal
+        // characters and corrupt the command instead of protecting it.
+        var shellWords = new List<string> { options.Command };
+        shellWords.AddRange(options.Arguments.Select(AcpPathMapper.ToWslPath));
+
+        var flagLine = JoinArguments(wslFlags);
+        var shellLine = string.Join(" ", shellWords.Select(PosixQuote));
+        var argumentLine = flagLine.Length == 0 ? $"-- {shellLine}" : $"{flagLine} -- {shellLine}";
 
         var startInfo = new ProcessStartInfo
         {
             FileName = "wsl.exe",
-            Arguments = JoinArguments(args),
+            Arguments = argumentLine,
             UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardInput = true,
@@ -115,6 +123,27 @@ internal static class AcpRuntimeResolver
     internal static string JoinArguments(IEnumerable<string> arguments)
     {
         return string.Join(" ", arguments.Select(Quote));
+    }
+
+    internal static string PosixQuote(string value)
+    {
+        if (value.Length == 0)
+        {
+            return "''";
+        }
+
+        if (value.All(IsPosixSafe))
+        {
+            return value;
+        }
+
+        return "'" + value.Replace("'", @"'\''") + "'";
+    }
+
+    static bool IsPosixSafe(char ch)
+    {
+        return ch is (>= 'a' and <= 'z') or (>= 'A' and <= 'Z') or (>= '0' and <= '9')
+            or '-' or '_' or '.' or '/' or ':' or '=' or '+' or ',' or '@' or '%';
     }
 
     static string Quote(string value)
